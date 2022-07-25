@@ -1,21 +1,25 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { join } from 'path';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { ApolloDriver } from '@nestjs/apollo';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import config from './database/config';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmConfigService } from './database/typeorm.config.service';
+
 @Module({
-  imports: [GraphQLModule.forRoot({
-    autoSchemaFile: join(process.cwd(), 'src/scchema.gql'), // генерирует схему graphql
-    sortSchema: true,
-    driver: ApolloDriver
-  }),
-  UsersModule,
-  AuthModule
-],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [config]
+    }),
+    UserModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: TypeOrmConfigService
+    })
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}
