@@ -1,6 +1,8 @@
 import { IsOptional } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Exclude } from 'class-transformer';
+import { EDominantHand, EGender } from './user.domain';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -13,7 +15,8 @@ name: string;
 @Column({ type: 'varchar', unique: true })
 email: string;
 
-@Column({ type: 'varchar' })
+@Exclude()
+@Column({ type: 'varchar', select: false })
 password: string;
 
 @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
@@ -22,7 +25,7 @@ created_at: number;
 @UpdateDateColumn({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
 updated_at: number;
 
-@Column({ type: 'int' })
+@Column({ type: 'enum', enum: EGender, default: EGender.MALE })
 gender: number;
 
 @IsOptional()
@@ -36,8 +39,8 @@ weight: number;
 @Column()
 birthday: number;
 
-@Column({ type: 'int', default: 1 })
-dominant_hand: number;
+@Column({ type: 'enum', enum: EDominantHand, default: EDominantHand.Right })
+dominant_hand: EDominantHand;
 
 @BeforeInsert()
 async setHashPassword(plainPassword: string) {
