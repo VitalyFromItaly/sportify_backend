@@ -15,8 +15,9 @@ name: string;
 @Column({ type: 'varchar', unique: true })
 email: string;
 
-@Exclude()
-@Column({ type: 'varchar', select: false })
+// @Exclude()
+// @Column({ type: 'varchar', select: false })
+@Column({ type: 'varchar'})
 password: string;
 
 @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })

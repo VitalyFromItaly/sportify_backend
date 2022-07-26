@@ -7,7 +7,9 @@ export const REGEX = {
 
 const PASSWORD_RULE_MESSAGE = 'Password should have 1 upper, 1 lowercase letter, 1 number, and at least 8 character';
 export const MESSAGES = {
-  PASSWORD_RULE_MESSAGE
+  PASSWORD_RULE_MESSAGE,
+  WRONG_PASSWORD: 'Wrong password',
+  USER_NOT_FOUND: 'User not found'
 };
 
 const VALIDATION_PIPE = new ValidationPipe({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY });

@@ -10,7 +10,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   // constructor(private readonly vaultService: VaultService, private readonly configService: ConfigService) {}
 
   async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
-  // async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
     const isDev = this.configService.get<string>('db.environment') === 'development';
     
     
@@ -40,12 +39,13 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       ...dbConfig,
       type: 'mysql',
-      entities: ['dist/**/*.entity{.ts,.js}']
+      entities: ['dist/**/*.entity{.ts,.js}'],
       // subscribers: ['dist/api/**/entities/**/*.subscriber{.ts,.js}'],
       // synchronize: true, //isDev, временно пока не накодим базовую базу
       // migrationsRun: true,
       // migrationsTableName: 'migrations',
-      // migrations: ['src/migrations/*.ts'],
+      migrations: ['src/migrations/*.ts']
+      // logging: true
       // dropSchema: !isDev,
     };
   }
