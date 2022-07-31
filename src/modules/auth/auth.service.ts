@@ -4,13 +4,17 @@ import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
 import { MESSAGES } from 'src/app.utils';
 import { JwtService } from '@nestjs/jwt';
+import { EExpirationTime } from './auth.constants';
 
 @Injectable()
 export class AuthService {
   constructor(private userService: UserService, private jwtService: JwtService) {}
 
   getToken(user: User) {
-    return { access_token: this.jwtService.sign({ ...user }) };
+    return { 
+      access_token: this.jwtService.sign({ ...user }),
+      expires_in: new Date().getTime() + EExpirationTime.TWO_DAYS
+    };
   }
 
   async validateUserCreds(email: string, password: string): Promise<User | undefined> {
