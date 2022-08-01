@@ -5,12 +5,13 @@ import * as bcrypt from 'bcrypt';
 import { MESSAGES } from 'src/app.utils';
 import { JwtService } from '@nestjs/jwt';
 import { EExpirationTime } from './auth.constants';
+import { TUserCreds } from './auth.domain';
 
 @Injectable()
 export class AuthService {
   constructor(private userService: UserService, private jwtService: JwtService) {}
 
-  getToken(user: User) {
+  getToken(user: TUserCreds) {
     return { 
       access_token: this.jwtService.sign({ ...user }),
       expires_in: new Date().getTime() + EExpirationTime.TWO_DAYS

@@ -3,10 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from '../user/user.entity';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(configService: ConfigService) {
+  constructor(configService: ConfigService, private userService: UserService) {
     super({
       secretOrKey: configService.get<string>('auth.secret_key'),
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
@@ -14,8 +15,14 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: User) {
+    const user = await this.userService.findOneByEmail(payload.email);
+    if (!user) {
+      throw new Error('user not found');
+    }
+    delete user.password;
+    
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...rest } = payload;
-    return rest;
+    // const { password, ...rest } = payload;
+    return user;
   }
 }

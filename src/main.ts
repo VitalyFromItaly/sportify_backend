@@ -12,13 +12,13 @@ async function bootstrap() {
     }
   })); // валидирует все роуты автоматом 
 
-  const config = new DocumentBuilder()
+  const swaggerConfig = new DocumentBuilder()
   .setTitle('Sportify Api')
   .setDescription('Sportify API description')
   .setVersion('1.0')
   .addBearerAuth()
   .build();
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
 

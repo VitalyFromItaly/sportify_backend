@@ -57,7 +57,8 @@ export class UpdateUserProfileDto {
   @ApiProperty({
     description: 'user`s dominant hand (left or right)',
     example: EDominantHand.Right,
-    enum: Object.keys(EDominantHand),
+    enum: EDominantHand,
+    // enum: Object.keys(EDominantHand),
     enumName: 'EDominantHand'
   })
   @IsOptional()

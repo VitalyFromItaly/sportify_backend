@@ -15,6 +15,7 @@ export class UserController {
 
   @Get('/:id')
   @ApiBearerAuth()
+  @ApiCreatedResponse({ description: 'create user', type: User })
   async read(@Param('id') id: string): Promise<User | undefined> {
     return await this.usersService.findOneBy(+id);
   }
