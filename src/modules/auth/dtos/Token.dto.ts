@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsJWT, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsJWT, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 export class TokenDto {
   @ApiProperty({
@@ -10,8 +10,16 @@ export class TokenDto {
   access_token: string;
 
   @ApiProperty({
-    description: 'user`s password',
-    example: 'awesomePassword123!@#'
+    description: 'access token'
+  })
+  @IsJWT()
+  @IsNotEmpty()
+  @IsOptional()
+  refresh_token?: string;
+
+  @ApiProperty({
+    description: 'when token will be expired',
+    example: 1243464554
   })
   @IsNotEmpty()
   @IsNumber()

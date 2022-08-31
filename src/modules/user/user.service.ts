@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { MESSAGES } from 'src/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './user.entity';
@@ -11,6 +12,11 @@ export class UserService {
 
   public async create(userDto: CreateUserDto): Promise<User> {
     delete userDto.password_confirm;
+
+    const isUserExist = await this.findOneByEmail(userDto.email);
+    if (!!isUserExist) {
+      throw new BadRequestException(MESSAGES.USER_EXIST);
+    }
 
     const user = new User();
     Object.assign(user, { ...userDto });

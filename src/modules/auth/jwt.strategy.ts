@@ -20,9 +20,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new Error('user not found');
     }
     delete user.password;
-    
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const { password, ...rest } = payload;
     return user;
   }
 }

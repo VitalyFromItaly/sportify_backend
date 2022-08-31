@@ -5,6 +5,6 @@ export enum EGender {
 }
 
 export enum EDominantHand {
-  Right = 1,
-  Left
+  RIGHT = 1,
+  LEFT
 }

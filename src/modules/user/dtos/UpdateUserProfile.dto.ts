@@ -14,7 +14,7 @@ export class UpdateUserProfileDto {
   @ApiProperty({
     description: 'user`s gender',
     example: EGender.FEMALE,
-    enum: Object.keys(EGender),
+    enum: EGender,
     enumName: 'EGender'
   })
   @IsOptional()
@@ -56,9 +56,8 @@ export class UpdateUserProfileDto {
 
   @ApiProperty({
     description: 'user`s dominant hand (left or right)',
-    example: EDominantHand.Right,
+    example: EDominantHand.RIGHT,
     enum: EDominantHand,
-    // enum: Object.keys(EDominantHand),
     enumName: 'EDominantHand'
   })
   @IsOptional()
