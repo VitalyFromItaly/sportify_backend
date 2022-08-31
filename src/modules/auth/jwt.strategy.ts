@@ -19,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new Error('user not found');
     }
-    delete user.password;
+
     return user;
   }
 }

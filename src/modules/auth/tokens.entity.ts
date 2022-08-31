@@ -10,17 +10,17 @@ export class Tokens extends BaseEntity {
   @PrimaryGeneratedColumn({ comment: 'token uniq id' })
   id: number;
 
-  @OneToOne(() => User, (user) => user.id)
-  @JoinColumn({ foreignKeyConstraintName: 'user_id' })
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
-  @Exclude()
-  created_at: Date;
+  // @Exclude()
+  // @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)', select: false })
+  // created_at: Date;
 
-  @UpdateDateColumn({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
-  @Exclude()
-  updated_at: Date;
+  // @Exclude()
+  // @UpdateDateColumn({ type: 'timestamp',  default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)', select: false })
+  // updated_at: Date;
 
   @Column({ nullable: true, type: 'longtext' })
   @IsOptional()

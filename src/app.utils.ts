@@ -10,7 +10,8 @@ export const MESSAGES = {
   PASSWORD_RULE_MESSAGE,
   WRONG_PASSWORD: 'Wrong password',
   USER_NOT_FOUND: 'User not found',
-  USER_EXIST: 'There is a user with provided email, please try another one or log in'
+  USER_EXIST: 'There is a user with provided email, please try another one or log in',
+  INVALID_TOKEN: 'Invalid token'
 };
 
 const VALIDATION_PIPE = new ValidationPipe({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY });

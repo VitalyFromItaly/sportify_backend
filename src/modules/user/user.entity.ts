@@ -1,10 +1,9 @@
 import { IsOptional } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { Exclude } from 'class-transformer';
+import { Exclude, instanceToPlain } from 'class-transformer';
 import { EDominantHand, EGender } from './user.domain';
 import { ApiProperty } from '@nestjs/swagger';
-import { TokenDto } from '../auth/dtos/Token.dto';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -26,9 +25,8 @@ export class User extends BaseEntity {
     description: 'user`s hashed password',
     example: 'fdkl345l2kjsfk4tjlk@LK$3'
   })
-  @Exclude()
-  // @Column({ type: 'varchar', select: false })
-  @Column({ type: 'varchar'})
+  @Exclude({ toPlainOnly: true })
+  @Column({ type: 'varchar' })
   password: string;
 
   @ApiProperty({
@@ -89,13 +87,17 @@ export class User extends BaseEntity {
   dominant_hand: EDominantHand;
 
 
-  // @Column({ nullable: true, type: 'longtext' })
-  // @Exclude()
-  // refresh_token: string;
+  @Column({ nullable: true, type: 'longtext' })
+  @Exclude({ toPlainOnly: true })
+  refresh_token?: string;
 
   // @Column({ nullable: true, type: 'longtext' })
   // @Exclude()
   // access_token: string;
+
+  toJSON() {
+    return instanceToPlain(this);
+  }
 
   @BeforeInsert()
   async setHashPassword(plainPassword: string) {

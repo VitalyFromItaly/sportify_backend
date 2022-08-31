@@ -28,11 +28,6 @@ import { APP_GUARD } from '@nestjs/core';
       },
       inject: [ConfigService]
     })
-    // JwtModule.register({
-    //   secret: process.env.SECRET_KEY,
-    //   signOptions: { expiresIn: '10s' }
-    //   // signOptions: { expiresIn: '2 days' }
-    // })
   ],
   providers: [
     AuthService,

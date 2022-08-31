@@ -1,8 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { MESSAGES } from 'src/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -35,7 +36,20 @@ export class UserService {
     const user = await this.findOneBy(userProfileDto.id);
 
     const updatedUser = Object.assign(user, userProfileDto);
-    return await updatedUser.save();
+    await updatedUser.save();
+
+    return updatedUser;
   }
 
+  public async setRefreshToken(email: string, token: string) {
+    const user = await this.findOneByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    const salt = await bcrypt.genSalt();
+    const hashedToken = await bcrypt.hash(token, salt);
+
+    user.refresh_token = hashedToken;
+    await user.save();
+  }
 }

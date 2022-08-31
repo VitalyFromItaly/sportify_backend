@@ -8,18 +8,22 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 import { LocalAuthGuard } from './local-auth.guard';
 import { User } from '../user/user.entity';
 import { RefreshTokenDto } from './dtos/RefreshToken.dto';
+import { UserService } from '../user/user.service';
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private userService: UserService) {}
 
   @Public()
   @ApiOperation({ operationId: 'login' })
   @Post('login')
-  @ApiCreatedResponse({ description: 'create user', type: TokenDto })
+  @ApiCreatedResponse({ description: 'login', type: TokenDto })
   @UseGuards(LocalAuthGuard)
   async login(@Body() user: UserCredsDto): Promise<TokenDto> {
-    return await this.authService.getTokens(user);
+    const tokens = await this.authService.getTokens(user);
+    const { refresh_token } = tokens;
+    this.userService.setRefreshToken(user.email, refresh_token);
+    return tokens;
   }
 
   @Get('user')
@@ -31,15 +35,29 @@ export class AuthController {
     return req.user;
   }
 
-  @Get('refresh')
-  @ApiOperation({ operationId: 'refreshTokens' })
+  @Get('refresh-access-token')
+  @ApiOperation({ operationId: 'refreshAccessToken' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'refresh tokens', type: TokenDto })
   @UseGuards(JwtAuthGuard)
   async getAccessToken(@Body() { refresh_token }: RefreshTokenDto, @Request() req: any): Promise<Partial<TokenDto>> {
     try {
-      const tokens = await this.authService.updateToken(refresh_token, req.user);
-      return {...tokens };
+      const token = await this.authService.refreshAccessToken(refresh_token, req.user);
+      return token;
+    } catch(error) {
+      throw error;
+    }
+  }
+
+  @Get('refresh-tokens')
+  @ApiOperation({ operationId: 'refreshTokens' })
+  @ApiBearerAuth()
+  @ApiDefaultResponse({ description: 'refresh tokens', type: TokenDto })
+  @UseGuards(JwtAuthGuard)
+  async getTokens(@Body() { refresh_token }: RefreshTokenDto, @Request() req: any): Promise<Partial<TokenDto>> {
+    try {
+      const token = await this.authService.getTokens(req.user, refresh_token);
+      return token;
     } catch(error) {
       throw error;
     }
