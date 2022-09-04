@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe({ 
     exceptionFactory: (errors) => {
       const result = errors.map((error) => ({ [error.property]: Object.values(error.constraints) }));
