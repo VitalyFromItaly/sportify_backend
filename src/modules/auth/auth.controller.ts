@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Public } from './auth.decorators';
 import { AuthService } from './auth.service';
@@ -17,8 +17,10 @@ export class AuthController {
   @Public()
   @ApiOperation({ operationId: 'login' })
   @Post('login')
+
   @ApiCreatedResponse({ description: 'login', type: TokenDto })
   @UseGuards(LocalAuthGuard)
+  @HttpCode(200)
   async login(@Body() user: UserCredsDto): Promise<TokenDto> {
     const tokens = await this.authService.getTokens(user);
     const { refresh_token } = tokens;

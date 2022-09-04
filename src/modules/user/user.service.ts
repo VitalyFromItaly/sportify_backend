@@ -1,9 +1,10 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, HttpCode, Injectable, UnauthorizedException } from '@nestjs/common';
 import { MESSAGES } from 'src/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { THttpResponse, THttpStatus } from 'src/common/types/Http';
 
 @Injectable()
 export class UserService {
@@ -11,7 +12,7 @@ export class UserService {
     return [1,2,3];
   }
 
-  public async create(userDto: CreateUserDto): Promise<User> {
+  public async create(userDto: CreateUserDto): Promise<THttpResponse> {
     delete userDto.password_confirm;
 
     const isUserExist = await this.findOneByEmail(userDto.email);
@@ -21,7 +22,8 @@ export class UserService {
 
     const user = new User();
     Object.assign(user, { ...userDto });
-    return await user.save();
+    await user.save();
+    return { status: 'success', statusCode: 201 };
   }
 
   public async findOneByEmail(email: string): Promise<User | undefined> {

@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
@@ -8,7 +8,6 @@ import { EExpirationTime } from './auth.constants';
 import { TUserCreds } from './auth.domain';
 import { TokenDto } from './dtos/Token.dto';
 import { ConfigService } from '@nestjs/config';
-import { Tokens } from './tokens.entity';
 
 @Injectable()
 export class AuthService {

@@ -1,8 +1,10 @@
 import { Body, ClassSerializerInterceptor, Controller, Get, HttpCode, Param, Post, Put, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SETTINGS } from 'src/app.utils';
+import { THttpResponse, THttpStatus, IResponseWrapper } from 'src/common/types/Http';
 import { Public } from '../auth/auth.decorators';
 import { CreateUserDto } from './dtos/CreateUser.dto';
+import { ResponseCreateUser } from './dtos/ResponseCreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -22,12 +24,12 @@ export class UserController {
 
   @Post('/create')
   @Public()
-  @ApiCreatedResponse({ description: 'create user', type: User })
+  @ApiCreatedResponse({ description: 'create user', type: ResponseCreateUser })
   @ApiBadRequestResponse({ description: 'user can not register' })
   @ApiOperation({ operationId: 'create' })
   @HttpCode(201)
   @UseInterceptors(ClassSerializerInterceptor) // allows not to return @Exclude() fields in entity
-  async create(@Body(SETTINGS.VALIDATION_PIPE) user: CreateUserDto): Promise<User> {
+  async create(@Body(SETTINGS.VALIDATION_PIPE) user: CreateUserDto): Promise<THttpResponse> {
     return await this.usersService.create(user);
   }
 

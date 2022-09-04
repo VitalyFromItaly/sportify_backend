@@ -21,10 +21,10 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', unique: true })
   email: string;
 
-  @ApiProperty({
-    description: 'user`s hashed password',
-    example: 'fdkl345l2kjsfk4tjlk@LK$3'
-  })
+  // @ApiProperty({
+  //   description: 'user`s hashed password',
+  //   example: 'fdkl345l2kjsfk4tjlk@LK$3'
+  // })
   @Exclude({ toPlainOnly: true })
   @Column({ type: 'varchar' })
   password: string;

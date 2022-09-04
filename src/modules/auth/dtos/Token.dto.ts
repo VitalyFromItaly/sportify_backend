@@ -35,6 +35,6 @@ export class TokenDto {
   @IsOptional()
   refresh_token_expires_in?: number;
 
-  @ApiProperty({ description: 'user info' })
-  user?: User;
+  // @ApiProperty({ description: 'user info' })
+  // user?: User;
 }  
