@@ -17,7 +17,6 @@ export class AuthController {
   @Public()
   @ApiOperation({ operationId: 'login' })
   @Post('login')
-
   @ApiCreatedResponse({ description: 'login', type: TokenDto })
   @UseGuards(LocalAuthGuard)
   @HttpCode(200)
@@ -26,15 +25,6 @@ export class AuthController {
     const { refresh_token } = tokens;
     this.userService.setRefreshToken(user.email, refresh_token);
     return tokens;
-  }
-
-  @Get('user')
-  @ApiOperation({ operationId: 'user' })
-  @ApiBearerAuth()
-  @ApiDefaultResponse({ description: 'get user info by token', type: User })
-  @UseGuards(JwtAuthGuard)
-  async getUser(@Request() req: any): Promise<Partial<User>> {
-    return req.user;
   }
 
   @Get('refresh-access-token')

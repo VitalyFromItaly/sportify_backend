@@ -91,10 +91,6 @@ export class User extends BaseEntity {
   @Exclude({ toPlainOnly: true })
   refresh_token?: string;
 
-  // @Column({ nullable: true, type: 'longtext' })
-  // @Exclude()
-  // access_token: string;
-
   toJSON() {
     return instanceToPlain(this);
   }
