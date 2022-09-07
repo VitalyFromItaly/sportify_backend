@@ -22,7 +22,7 @@ export class UserController {
     return await this.usersService.findOneBy(+id);
   }
 
-  @Post('/cre ate')
+  @Post('/create')
   @Public()
   @ApiCreatedResponse({ description: 'create user', type: ResponseCreateUser })
   @ApiBadRequestResponse({ description: 'user can not register' })

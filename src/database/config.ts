@@ -8,5 +8,5 @@ export default registerAs('db', () => ({
   username: process.env.DATABASE_USERNAME || 'root',
   password: process.env.DATABASE_PASSWORD || 'password',
   database: process.env.DATABASE_NAME || 'sportify',
-  synchronize: JSON.parse(process.env.DATABASE_SYNCHRONIZE)
+  synchronize: process.env.DATABASE_SYNCHRONIZE || true
 }));
