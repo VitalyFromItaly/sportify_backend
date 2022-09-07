@@ -8,3 +8,8 @@ export enum EDominantHand {
   RIGHT = 1,
   LEFT
 }
+
+export enum EUserStatus {
+  NEW = 0,
+  KNOWN
+}

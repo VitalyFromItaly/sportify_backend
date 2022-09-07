@@ -1,9 +1,8 @@
-import { Body, ClassSerializerInterceptor, Controller, Get, HttpCode, Param, Post, Put, UseGuards, UseInterceptors, Request } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Get, HttpCode, Param, Post, Put, UseInterceptors, Request } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SETTINGS } from 'src/app.utils';
 import { THttpResponse } from 'src/common/types/Http';
 import { Public } from '../auth/auth.decorators';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { ResponseCreateUser } from './dtos/ResponseCreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
@@ -23,7 +22,7 @@ export class UserController {
     return await this.usersService.findOneBy(+id);
   }
 
-  @Post('/create')
+  @Post('/cre ate')
   @Public()
   @ApiCreatedResponse({ description: 'create user', type: ResponseCreateUser })
   @ApiBadRequestResponse({ description: 'user can not register' })
@@ -46,9 +45,12 @@ export class UserController {
   @ApiOperation({ operationId: 'get' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'get user info by token', type: User })
-  @UseGuards(JwtAuthGuard)
-  async getUser(@Request() req: any): Promise<Partial<User>> {
+  // @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  getUser(@Request() req: any): User {
     return req.user;
-  }
+  } 
+  // async getUser(@Request() req: any): Promise<{ user: User }> {
+  //   return { user: req.user };
+  // } 
 }
- 

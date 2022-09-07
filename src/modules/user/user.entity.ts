@@ -1,8 +1,8 @@
-import { IsOptional } from 'class-validator';
+import { IsOptional, Max, Min } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { EDominantHand, EGender } from './user.domain';
+import { EDominantHand, EGender, EUserStatus } from './user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'users' })
@@ -90,6 +90,15 @@ export class User extends BaseEntity {
   @Column({ nullable: true, type: 'longtext' })
   @Exclude({ toPlainOnly: true })
   refresh_token?: string;
+
+  @Column({ default: EUserStatus.NEW })
+  @Min(EUserStatus.NEW)
+  @Max(EUserStatus.KNOWN)
+  @ApiProperty({
+    description: 'user status',
+    example: EUserStatus.NEW
+  })
+  status: number;
 
   toJSON() {
     return instanceToPlain(this);
