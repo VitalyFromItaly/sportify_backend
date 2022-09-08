@@ -2,7 +2,7 @@ import { IsOptional, Max, Min } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { EDominantHand, EGender, EUserStatus } from './user.domain';
+import { EDominantHand, EGender, EGoal, EUserStatus, TActivity } from './user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'users' })
@@ -21,10 +21,6 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', unique: true })
   email: string;
 
-  // @ApiProperty({
-  //   description: 'user`s hashed password',
-  //   example: 'fdkl345l2kjsfk4tjlk@LK$3'
-  // })
   @Exclude({ toPlainOnly: true })
   @Column({ type: 'varchar' })
   password: string;
@@ -49,6 +45,8 @@ export class User extends BaseEntity {
   })
   @IsOptional()
   @Column({ type: 'enum', enum: EGender, default: EGender.OTHER })
+  @Min(EGender.MALE)
+  @Max(EGender.OTHER)
   gender: EGender;
 
   @ApiProperty({
@@ -70,6 +68,26 @@ export class User extends BaseEntity {
   weight: number;
 
   @ApiProperty({
+    description: 'user`s chosen activities',
+    example: JSON.stringify([{ value: 1, text: 'running' }]),
+    nullable: true
+  })
+  @IsOptional()
+  @Column({ type: 'json', default: null, nullable: true })
+  activities: TActivity[];
+
+  @ApiProperty({
+    description: 'user`s training goal',
+    example: EGoal.ANAEROBIC,
+    nullable: false
+  })
+  @IsOptional()
+  @Column({ type: 'enum', enum: EGoal, default: EGoal.MIXED, nullable: false })
+  @Min(EGoal.ANAEROBIC)
+  @Max(EGoal.MIXED)
+  goal: EGoal;
+
+  @ApiProperty({
     description: 'user`s age',
     example: 78,
     nullable: true
@@ -78,13 +96,13 @@ export class User extends BaseEntity {
   @Column({ type: 'int', default: null })
   age: number;
 
-  @ApiProperty({
-    description: 'user`s age',
-    example: 78
-  })
-  @IsOptional()
-  @Column({ type: 'enum', enum: EDominantHand, default: EDominantHand.RIGHT })
-  dominant_hand: EDominantHand;
+  // @ApiProperty({
+  //   description: 'user`s dominant hand',
+  //   example: 78
+  // })
+  // @IsOptional()
+  // @Column({ type: 'enum', enum: EDominantHand, default: EDominantHand.RIGHT })
+  // dominant_hand: EDominantHand;
 
 
   @Column({ nullable: true, type: 'longtext' })
