@@ -1,16 +1,17 @@
 import { IsOptional, Max, Min } from 'class-validator';
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { EDominantHand, EGender, EGoal, EUserStatus, TActivity } from './user.domain';
+import { EGender, EGoal, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
+import { Activity } from 'src/modules/activity/entities/activity.entity';
 
-@Entity({ name: 'users' })
+@Entity({ name: 'user' })
 export class User extends BaseEntity {
     @ApiProperty({
       description: 'user`s uniq id',
       example: 45
-    })
+    })  
   @PrimaryGeneratedColumn({ comment: 'user uniq id' })
   id: number;
 
@@ -68,23 +69,14 @@ export class User extends BaseEntity {
   weight: number;
 
   @ApiProperty({
-    description: 'user`s chosen activities',
-    example: JSON.stringify([{ value: 1, text: 'running' }]),
-    nullable: true
-  })
-  @IsOptional()
-  @Column({ type: 'json', default: null, nullable: true })
-  activities: TActivity[];
-
-  @ApiProperty({
     description: 'user`s training goal',
-    example: EGoal.ANAEROBIC,
+    example: EGoal.WEIGHT_REDUCTION,
     nullable: false
   })
   @IsOptional()
-  @Column({ type: 'enum', enum: EGoal, default: EGoal.MIXED, nullable: false })
-  @Min(EGoal.ANAEROBIC)
-  @Max(EGoal.MIXED)
+  @Column({ type: 'enum', enum: EGoal, default: EGoal.WEIGHT_MAINTENANCE, nullable: false })
+  @Min(EGoal.WEIGHT_REDUCTION)
+  @Max(EGoal.COMPETITION_PREPARATION)
   goal: EGoal;
 
   @ApiProperty({
@@ -95,15 +87,6 @@ export class User extends BaseEntity {
   @IsOptional()
   @Column({ type: 'int', default: null })
   age: number;
-
-  // @ApiProperty({
-  //   description: 'user`s dominant hand',
-  //   example: 78
-  // })
-  // @IsOptional()
-  // @Column({ type: 'enum', enum: EDominantHand, default: EDominantHand.RIGHT })
-  // dominant_hand: EDominantHand;
-
 
   @Column({ nullable: true, type: 'longtext' })
   @Exclude({ toPlainOnly: true })
@@ -117,6 +100,9 @@ export class User extends BaseEntity {
     example: EUserStatus.NEW
   })
   status: number;
+
+  @OneToMany(() => Activity, (activity) => activity.user)
+  activities: Activity[];
 
   toJSON() {
     return instanceToPlain(this);

@@ -2,7 +2,7 @@ import { BadRequestException, HttpCode, Injectable, UnauthorizedException } from
 import { MESSAGES } from 'src/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { THttpResponse, THttpStatus } from 'src/common/types/Http';
 

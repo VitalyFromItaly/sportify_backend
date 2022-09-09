@@ -6,7 +6,7 @@ import { Public } from '../auth/auth.decorators';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { ResponseCreateUser } from './dtos/ResponseCreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
 @ApiTags('User')
@@ -22,7 +22,7 @@ export class UserController {
     return await this.usersService.findOneBy(+id);
   }
 
-  @Post('/cre ate')
+  @Post('/create')
   @Public()
   @ApiCreatedResponse({ description: 'create user', type: ResponseCreateUser })
   @ApiBadRequestResponse({ description: 'user can not register' })

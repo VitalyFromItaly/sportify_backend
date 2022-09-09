@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsJWT, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
-import { User } from 'src/modules/user/user.entity';
 
 export class TokenDto {
   @ApiProperty({

@@ -14,10 +14,9 @@ export enum EUserStatus {
   KNOWN
 }
 
-export type TActivity = { value: string; text: string };
-
 export enum EGoal {
-  ANAEROBIC, // swimming, running
-  AEROBIC, // like gym, pullups, pushups
-  MIXED
+  WEIGHT_REDUCTION,
+  MUSCLE_GAIN,
+  WEIGHT_MAINTENANCE,
+  COMPETITION_PREPARATION
 }

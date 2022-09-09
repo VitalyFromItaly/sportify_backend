@@ -40,6 +40,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       ...dbConfig,
       type: 'mysql',
       entities: ['dist/**/*.entity{.ts,.js}'],
+      // entities: ['dist/**/*.entity{.ts,.js}'],
       // subscribers: ['dist/api/**/entities/**/*.subscriber{.ts,.js}'],
       // synchronize: true, //isDev, временно пока не накодим базовую базу
       // migrationsRun: true,
