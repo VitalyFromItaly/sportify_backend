@@ -5,6 +5,7 @@ import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { THttpResponse, THttpStatus } from 'src/common/types/Http';
+import { createQueryBuilder, getRepository } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -28,14 +29,20 @@ export class UserService {
 
   public async findOneByEmail(email: string): Promise<User | undefined> {
     return await User.findOne({ where: { email } });
+    // return await User.findOne({ where: { email }, relations: { activities: true } });
   }
 
-  public async findOneBy(id: number): Promise<User | undefined> {
-    return await User.findOneBy({ id });
+  public async findOneById(id: number): Promise<User | undefined> {
+    return await User.findOne({ where: { id } });
+    // const user = await User.findOne({ where: { id }, relations: { activities: true } });
+    // const activities = await user.activities;
+    // console.log({ activities });
+    // return user;
+    
   }
 
   public async updateUserProfile(userProfileDto: UpdateUserProfileDto): Promise<User> {
-    const user = await this.findOneBy(userProfileDto.id);
+    const user = await this.findOneById(userProfileDto.id);
 
     const updatedUser = Object.assign(user, userProfileDto);
     await updatedUser.save();

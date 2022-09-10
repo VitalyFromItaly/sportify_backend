@@ -19,7 +19,7 @@ export class UserController {
   @ApiOperation({ operationId: 'fetchUserById' })
   @ApiCreatedResponse({ description: 'create user', type: User })
   async read(@Param('id') id: string): Promise<User | undefined> {
-    return await this.usersService.findOneBy(+id);
+    return await this.usersService.findOneById(+id);
   }
 
   @Post('/create')
@@ -47,10 +47,7 @@ export class UserController {
   @ApiDefaultResponse({ description: 'get user info by token', type: User })
   // @UseGuards(JwtAuthGuard)
   @HttpCode(200)
-  getUser(@Request() req: any): User {
+  async getUser(@Request() req: any): Promise<User> {
     return req.user;
-  } 
-  // async getUser(@Request() req: any): Promise<{ user: User }> {
-  //   return { user: req.user };
-  // } 
+  }
 }

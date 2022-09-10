@@ -33,7 +33,7 @@ export class Activity extends BaseEntity {
     @Max(EActivityType.AEROBIC) // running 2
     type: EActivityType;
 
-    @ManyToMany(() => User, { eager: true })
+    @ManyToMany(() => User, (user) => user.activities)
     @JoinTable({  name: 'user_activities' })
     user: User[];
 

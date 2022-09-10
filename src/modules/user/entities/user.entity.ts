@@ -1,5 +1,5 @@
 import { IsOptional, Max, Min } from 'class-validator';
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { EGender, EGoal, EUserStatus } from '../user.domain';
@@ -101,8 +101,10 @@ export class User extends BaseEntity {
   })
   status: number;
 
-  @OneToMany(() => Activity, (activity) => activity.user)
-  activities: Activity[];
+  @ApiProperty({ description: 'user activities ', type: [Activity] })
+  @ManyToMany(() => Activity, (activity) => activity.user, { eager: true })
+  // @OneToMany(() => Activity, (activity) => activity.user)
+  activities?: Activity[];
 
   toJSON() {
     return instanceToPlain(this);
