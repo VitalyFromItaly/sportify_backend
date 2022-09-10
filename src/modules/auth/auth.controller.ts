@@ -6,7 +6,6 @@ import { UserCredsDto } from './dtos/UserCreds.dto';
 import { TokenDto } from './dtos/Token.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LocalAuthGuard } from './local-auth.guard';
-import { User } from '../user/user.entity';
 import { RefreshTokenDto } from './dtos/RefreshToken.dto';
 import { UserService } from '../user/user.service';
 @ApiTags('Auth')
@@ -27,11 +26,12 @@ export class AuthController {
     return tokens;
   }
 
-  @Get('refresh-access-token')
+  @Post('refresh-access-token')
   @ApiOperation({ operationId: 'refreshAccessToken' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'refresh tokens', type: TokenDto })
   @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
   async getAccessToken(@Body() { refresh_token }: RefreshTokenDto, @Request() req: any): Promise<Partial<TokenDto>> {
     try {
       const token = await this.authService.refreshAccessToken(refresh_token, req.user);
@@ -41,11 +41,12 @@ export class AuthController {
     }
   }
 
-  @Get('refresh-tokens')
+  @Post ('refresh-tokens')
   @ApiOperation({ operationId: 'refreshTokens' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'refresh tokens', type: TokenDto })
   @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
   async getTokens(@Body() { refresh_token }: RefreshTokenDto, @Request() req: any): Promise<Partial<TokenDto>> {
     try {
       const token = await this.authService.getTokens(req.user, refresh_token);

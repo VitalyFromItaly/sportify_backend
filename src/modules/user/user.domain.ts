@@ -13,3 +13,10 @@ export enum EUserStatus {
   NEW = 0,
   KNOWN
 }
+
+export enum EGoal {
+  WEIGHT_REDUCTION,
+  MUSCLE_GAIN,
+  WEIGHT_MAINTENANCE,
+  COMPETITION_PREPARATION
+}

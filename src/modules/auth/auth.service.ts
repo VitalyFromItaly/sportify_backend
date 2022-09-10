@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
 import { MESSAGES } from 'src/app.utils';
