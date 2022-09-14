@@ -35,7 +35,8 @@ export class UserController {
 
   @Put('/update-profile')
   @ApiBearerAuth()
-  @ApiOperation({ operationId: 'updateUserProfile' })
+  @ApiOperation({ operationId: 'update' })
+  @ApiDefaultResponse({ description: 'returns updated user info', type: User })
   @HttpCode(200)
   async updateUserInfo(@Body(SETTINGS.VALIDATION_PIPE) userProfile: UpdateUserProfileDto): Promise<User> {
     return await this.usersService.updateUserProfile(userProfile);
