@@ -1,14 +1,10 @@
-import { IsOptional, Max, Min } from 'class-validator';
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import * as bcrypt from 'bcrypt';
-import { Exclude, instanceToPlain } from 'class-transformer';
-import { EGender, EGoal, ELanguages, EUserStatus, TUserComment } from '../user.domain';
-import { ApiProperty } from '@nestjs/swagger';
-import { Activity } from 'src/modules/activity/entities/activity.entity';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { instanceToPlain } from 'class-transformer';
 
-@Entity({ name: 'user-comments' })
-export class UserComment extends BaseEntity {
+@Entity({ name: 'user_comment' })
+export class Comment extends BaseEntity {
     @ApiProperty({
       description: 'user`s uniq id',
       example: 45
@@ -21,6 +17,7 @@ export class UserComment extends BaseEntity {
   comment: string;
 
   @ManyToOne(() => User, (user) => user.comments)
+  @JoinColumn({ name: 'user_id' })
   @ApiProperty({ description: 'user id' })
   user: User;
 

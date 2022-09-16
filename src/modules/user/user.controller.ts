@@ -1,10 +1,11 @@
 import { Body, ClassSerializerInterceptor, Controller, Get, HttpCode, Param, Post, Put, UseInterceptors, Request } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SETTINGS } from 'src/app.utils';
+import { CreateResponse } from 'src/common/dtos/CreateResponse.dto';
 import { THttpResponse } from 'src/common/types/Http';
 import { Public } from '../auth/auth.decorators';
+import { CommentDto } from './dtos/Comment.dto';
 import { CreateUserDto } from './dtos/CreateUser.dto';
-import { ResponseCreateUser } from './dtos/ResponseCreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -24,7 +25,7 @@ export class UserController {
 
   @Post('/create')
   @Public()
-  @ApiCreatedResponse({ description: 'create user', type: ResponseCreateUser })
+  @ApiCreatedResponse({ description: 'create user', type: CreateResponse })
   @ApiBadRequestResponse({ description: 'user can not register' })
   @ApiOperation({ operationId: 'create' })
   @HttpCode(201)
@@ -38,7 +39,7 @@ export class UserController {
   @ApiOperation({ operationId: 'update' })
   @ApiDefaultResponse({ description: 'returns updated user info', type: User })
   @HttpCode(200)
-  async updateUserInfo(@Body(SETTINGS.VALIDATION_PIPE) userProfile: UpdateUserProfileDto): Promise<User> {
+  async update(@Body(SETTINGS.VALIDATION_PIPE) userProfile: UpdateUserProfileDto): Promise<User> {
     return await this.usersService.updateUserProfile(userProfile);
   }
 
@@ -50,5 +51,14 @@ export class UserController {
   @HttpCode(200)
   async getUser(@Request() req: any): Promise<User> {
     return req.user;
+  }
+
+  @Post('/leave-comment')
+  @ApiOperation({ operationId: 'leaveComment' })
+  @ApiBearerAuth()
+  @ApiDefaultResponse({ description: 'user suggestion/comment', type: CreateResponse })
+  @HttpCode(201)
+  async leaveComment(@Request() req: any, @Body(SETTINGS.VALIDATION_PIPE) comment: CommentDto): Promise<THttpResponse> {
+    return await this.usersService.createComment(req.user.id, comment.comment);
   }
 }

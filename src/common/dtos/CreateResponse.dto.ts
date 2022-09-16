@@ -1,14 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber } from 'class-validator';
-import { THttpStatus } from 'src/common/types/Http';
+import { EHttpStatus } from 'src/common/types/Http';
 
-export class ResponseCreateUser {
+export class CreateResponse {
   @ApiProperty({
     description: 'response status: success | error',
-    example: 'success'
+    example: 'success',
+    enum: EHttpStatus,
+    enumName: 'EHttpStatus'
   })
   @IsNotEmpty()
-  status: THttpStatus;
+  status: EHttpStatus;
 
   @ApiProperty({
     description: 'status code',

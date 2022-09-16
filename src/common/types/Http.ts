@@ -1,4 +1,8 @@
 export type THttpStatus = 'success' | 'error';
+export enum EHttpStatus {
+  SUCCESS = 'success',
+  ERROR = 'error'
+}
 
 export type THttpResponse = { status: THttpStatus, statusCode: number };
 

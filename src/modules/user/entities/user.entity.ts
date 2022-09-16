@@ -1,11 +1,11 @@
 import { IsOptional, Max, Min } from 'class-validator';
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { EGender, EGoal, ELanguages, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
-import { UserComment } from './user-comments.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -102,9 +102,9 @@ export class User extends BaseEntity {
   })
   status: number;
 
-  @OneToMany(() => UserComment, (comment) => comment.user)
-  @ApiProperty({ description: 'user comments' })
-  comments?: UserComment[];
+  @OneToMany(() => Comment, (comment) => comment.user)
+  @JoinTable()
+  comments?: Comment[];
 
   @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
   @ApiProperty({ description: 'user chosen language',  enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
