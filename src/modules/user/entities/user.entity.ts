@@ -1,9 +1,10 @@
 import { IsOptional, Max, Min } from 'class-validator';
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { EGender, EGoal, EUserStatus } from '../user.domain';
+import { EGender, EGoal, ELanguages, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
 
 @Entity({ name: 'user' })
@@ -81,12 +82,12 @@ export class User extends BaseEntity {
 
   @ApiProperty({
     description: 'user`s age',
-    example: 78,
+    example: new Date(11, 1, 1993),
     nullable: true
   })
   @IsOptional()
-  @Column({ type: 'int', default: null })
-  age: number;
+  @Column({ type: 'date', default: null })
+  birthday: Date;
 
   @Column({ nullable: true, type: 'longtext' })
   @Exclude({ toPlainOnly: true })
@@ -101,9 +102,16 @@ export class User extends BaseEntity {
   })
   status: number;
 
+  @OneToMany(() => Comment, (comment) => comment.user)
+  @JoinTable()
+  comments?: Comment[];
+
+  @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
+  @ApiProperty({ description: 'user chosen language',  enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
+  language: ELanguages;
+
   @ApiProperty({ description: 'user activities ', type: [Activity] })
   @ManyToMany(() => Activity, (activity) => activity.user, { eager: true })
-  // @OneToMany(() => Activity, (activity) => activity.user)
   activities?: Activity[];
 
   toJSON() {

@@ -4,11 +4,6 @@ export enum EGender {
   OTHER
 }
 
-export enum EDominantHand {
-  RIGHT = 1,
-  LEFT
-}
-
 export enum EUserStatus {
   NEW = 0,
   KNOWN
@@ -19,4 +14,14 @@ export enum EGoal {
   MUSCLE_GAIN,
   WEIGHT_MAINTENANCE,
   COMPETITION_PREPARATION
+}
+
+export type TUserComment = {
+  comment: string;
+  date: Date;
+};
+
+export enum ELanguages {
+  EN = 'en',
+  RU = 'ru'
 }

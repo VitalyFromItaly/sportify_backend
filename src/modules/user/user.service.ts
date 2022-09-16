@@ -1,12 +1,11 @@
-import { BadRequestException, HttpCode, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { MESSAGES } from 'src/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { THttpResponse, THttpStatus } from 'src/common/types/Http';
-import { createQueryBuilder, getRepository } from 'typeorm';
-
+import { Comment } from './entities/comment.entity';
 @Injectable()
 export class UserService {
   findAll() {
@@ -29,16 +28,10 @@ export class UserService {
 
   public async findOneByEmail(email: string): Promise<User | undefined> {
     return await User.findOne({ where: { email } });
-    // return await User.findOne({ where: { email }, relations: { activities: true } });
   }
 
   public async findOneById(id: number): Promise<User | undefined> {
     return await User.findOne({ where: { id } });
-    // const user = await User.findOne({ where: { id }, relations: { activities: true } });
-    // const activities = await user.activities;
-    // console.log({ activities });
-    // return user;
-    
   }
 
   public async updateUserProfile(userProfileDto: UpdateUserProfileDto): Promise<User> {
@@ -60,5 +53,20 @@ export class UserService {
 
     user.refresh_token = hashedToken;
     await user.save();
+  }
+
+  public async createComment(userId: number, comment: string): Promise<THttpResponse> {
+    const user = await this.findOneById(userId);
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    const userComment = new Comment();
+    
+    userComment.comment = comment;
+    userComment.user = user;
+    await userComment.save();
+    return { status: 'success', statusCode: 201 };
   }
 }
