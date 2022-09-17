@@ -21,6 +21,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
+  "engines": {
+    "node": "16.16.0"
+  },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^2.2.0",
