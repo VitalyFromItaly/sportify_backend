@@ -15,7 +15,7 @@ const config_1 = require("@nestjs/config");
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const user_service_1 = require("../user/user.service");
-let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
+let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(configService, userService) {
         super({
             secretOrKey: configService.get('auth.secret_key'),
@@ -32,7 +32,7 @@ let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport
     }
 };
 JwtStrategy = __decorate([
-    common_1.Injectable(),
+    (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [config_1.ConfigService, user_service_1.UserService])
 ], JwtStrategy);
 exports.JwtStrategy = JwtStrategy;

@@ -22,7 +22,7 @@ const core_1 = require("@nestjs/core");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: false, load: [auth_config_1.default] }),
             user_module_1.UserModule,

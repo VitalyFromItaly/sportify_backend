@@ -10,10 +10,10 @@ exports.LocalAuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
 const auth_constants_1 = require("./auth.constants");
-let LocalAuthGuard = class LocalAuthGuard extends passport_1.AuthGuard(auth_constants_1.EStrategies.LOCAL) {
+let LocalAuthGuard = class LocalAuthGuard extends (0, passport_1.AuthGuard)(auth_constants_1.EStrategies.LOCAL) {
 };
 LocalAuthGuard = __decorate([
-    common_1.Injectable()
+    (0, common_1.Injectable)()
 ], LocalAuthGuard);
 exports.LocalAuthGuard = LocalAuthGuard;
 //# sourceMappingURL=local-auth.guard.js.map

@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const passport_1 = require("@nestjs/passport");
 const auth_constants_1 = require("./auth.constants");
-let JwtAuthGuard = class JwtAuthGuard extends passport_1.AuthGuard(auth_constants_1.EStrategies.JWT) {
+let JwtAuthGuard = class JwtAuthGuard extends (0, passport_1.AuthGuard)(auth_constants_1.EStrategies.JWT) {
     constructor(reflector) {
         super();
         this.reflector = reflector;
@@ -31,7 +31,7 @@ let JwtAuthGuard = class JwtAuthGuard extends passport_1.AuthGuard(auth_constant
     }
 };
 JwtAuthGuard = __decorate([
-    common_1.Injectable(),
+    (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [core_1.Reflector])
 ], JwtAuthGuard);
 exports.JwtAuthGuard = JwtAuthGuard;

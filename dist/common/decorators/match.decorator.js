@@ -10,7 +10,7 @@ exports.MatchConstraint = exports.Match = void 0;
 const class_validator_1 = require("class-validator");
 const Match = (type, property, validationOptions) => {
     return (object, propertyName) => {
-        class_validator_1.registerDecorator({
+        (0, class_validator_1.registerDecorator)({
             target: object.constructor,
             propertyName,
             options: validationOptions,
@@ -31,7 +31,7 @@ let MatchConstraint = class MatchConstraint {
     }
 };
 MatchConstraint = __decorate([
-    class_validator_1.ValidatorConstraint({ name: 'Match' })
+    (0, class_validator_1.ValidatorConstraint)({ name: 'Match' })
 ], MatchConstraint);
 exports.MatchConstraint = MatchConstraint;
 //# sourceMappingURL=match.decorator.js.map

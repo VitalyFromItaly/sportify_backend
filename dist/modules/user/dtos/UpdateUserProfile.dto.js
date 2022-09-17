@@ -17,85 +17,85 @@ const user_domain_1 = require("../user.domain");
 class UpdateUserProfileDto {
 }
 __decorate([
-    swagger_1.ApiProperty({
+    (0, swagger_1.ApiProperty)({
         description: 'user`s uniq id',
         example: 45
     }),
-    class_validator_1.IsNumber(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "id", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s gender',
         example: user_domain_1.EGender.FEMALE
     }),
-    class_validator_1.IsOptional(),
-    class_validator_1.IsEnum(user_domain_1.EGender),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(user_domain_1.EGender),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "gender", void 0);
 __decorate([
-    class_validator_1.IsOptional(),
-    swagger_1.ApiPropertyOptional({
+    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s height',
         example: 178,
         minimum: 80,
         maximum: 250
     }),
-    class_validator_1.Min(80),
-    class_validator_1.Max(250),
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.Min)(80),
+    (0, class_validator_1.Max)(250),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "height", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s weight',
         example: 78,
         minimum: 30,
         maximum: 300
     }),
-    class_validator_1.Min(30),
-    class_validator_1.Max(300),
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.Min)(30),
+    (0, class_validator_1.Max)(300),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "weight", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s goal',
         example: user_domain_1.EGoal.WEIGHT_MAINTENANCE
     }),
-    class_validator_1.IsOptional(),
-    class_validator_1.Min(user_domain_1.EGoal.WEIGHT_REDUCTION),
-    class_validator_1.Max(user_domain_1.EGoal.COMPETITION_PREPARATION),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.Min)(user_domain_1.EGoal.WEIGHT_REDUCTION),
+    (0, class_validator_1.Max)(user_domain_1.EGoal.COMPETITION_PREPARATION),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "goal", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s age',
         example: new Date(11, 1, 1993),
         nullable: true
     }),
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], UpdateUserProfileDto.prototype, "birthday", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'user status',
         example: user_domain_1.EUserStatus.NEW
     }),
-    class_validator_1.Min(user_domain_1.EUserStatus.NEW),
-    class_validator_1.Max(user_domain_1.EUserStatus.KNOWN),
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.Min)(user_domain_1.EUserStatus.NEW),
+    (0, class_validator_1.Max)(user_domain_1.EUserStatus.KNOWN),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "status", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({ enum: user_domain_1.ELanguages, enumName: 'ELanguages', description: 'user chosen language' }),
-    class_validator_1.IsOptional(),
+    (0, swagger_1.ApiPropertyOptional)({ enum: user_domain_1.ELanguages, enumName: 'ELanguages', description: 'user chosen language' }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateUserProfileDto.prototype, "language", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({ description: 'user activities ', type: [activity_entity_1.Activity] }),
-    class_validator_1.IsOptional(),
+    (0, swagger_1.ApiPropertyOptional)({ description: 'user activities ', type: [activity_entity_1.Activity] }),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], UpdateUserProfileDto.prototype, "activities", void 0);
 exports.UpdateUserProfileDto = UpdateUserProfileDto;

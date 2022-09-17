@@ -18,42 +18,42 @@ const user_domain_1 = require("../user.domain");
 class CreateUserDto {
 }
 __decorate([
-    swagger_1.ApiProperty({
+    (0, swagger_1.ApiProperty)({
         description: 'user`s email',
         example: 'awesomeemail@gmail.com'
     }),
-    class_validator_1.IsEmail(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
-    swagger_1.ApiProperty({
+    (0, swagger_1.ApiProperty)({
         description: 'user`s password',
         example: 'awesomePassword123!@#'
     }),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.Length(6, 32),
-    class_validator_1.Matches(app_utils_1.REGEX.PASSWORD_RULE, { message: app_utils_1.MESSAGES.PASSWORD_RULE_MESSAGE }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Length)(6, 32),
+    (0, class_validator_1.Matches)(app_utils_1.REGEX.PASSWORD_RULE, { message: app_utils_1.MESSAGES.PASSWORD_RULE_MESSAGE }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
-    swagger_1.ApiProperty({
+    (0, swagger_1.ApiProperty)({
         description: 'user`s password confirmation',
         example: 'awesomePassword123!@#'
     }),
-    class_validator_1.IsNotEmpty(),
-    class_validator_1.Length(6, 32),
-    match_decorator_1.Match(CreateUserDto, (user) => user.password, { message: "'password' and 'password confirm' fields don't match" }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.Length)(6, 32),
+    (0, match_decorator_1.Match)(CreateUserDto, (user) => user.password, { message: "'password' and 'password confirm' fields don't match" }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password_confirm", void 0);
 __decorate([
-    swagger_1.ApiPropertyOptional({
+    (0, swagger_1.ApiPropertyOptional)({
         description: 'system language',
         enum: user_domain_1.ELanguages,
         enumName: 'ELanguages'
     }),
-    class_validator_1.IsEnum(user_domain_1.ELanguages),
-    class_validator_1.IsOptional(),
+    (0, class_validator_1.IsEnum)(user_domain_1.ELanguages),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "language", void 0);
 exports.CreateUserDto = CreateUserDto;

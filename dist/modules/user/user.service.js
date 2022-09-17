@@ -11,7 +11,6 @@ const common_1 = require("@nestjs/common");
 const app_utils_1 = require("../../app.utils");
 const user_entity_1 = require("./entities/user.entity");
 const bcrypt = require("bcrypt");
-const Http_1 = require("../../common/types/Http");
 const comment_entity_1 = require("./entities/comment.entity");
 let UserService = class UserService {
     findAll() {
@@ -63,7 +62,7 @@ let UserService = class UserService {
     }
 };
 UserService = __decorate([
-    common_1.Injectable()
+    (0, common_1.Injectable)()
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

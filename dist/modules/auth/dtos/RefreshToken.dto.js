@@ -15,11 +15,11 @@ const class_validator_1 = require("class-validator");
 class RefreshTokenDto {
 }
 __decorate([
-    swagger_1.ApiProperty({
+    (0, swagger_1.ApiProperty)({
         description: 'refresh token'
     }),
-    class_validator_1.IsJWT(),
-    class_validator_1.IsNotEmpty(),
+    (0, class_validator_1.IsJWT)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], RefreshTokenDto.prototype, "refresh_token", void 0);
 exports.RefreshTokenDto = RefreshTokenDto;

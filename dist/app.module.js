@@ -20,7 +20,7 @@ const activity_module_1 = require("./modules/activity/activity.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         imports: [
             config_2.ConfigModule.forRoot({ isGlobal: true, load: [config_1.default] }),
             user_module_1.UserModule,

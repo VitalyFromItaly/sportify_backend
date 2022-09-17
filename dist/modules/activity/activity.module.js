@@ -15,7 +15,7 @@ const activity_entity_1 = require("./entities/activity.entity");
 let ActivityModule = class ActivityModule {
 };
 ActivityModule = __decorate([
-    common_1.Module({
+    (0, common_1.Module)({
         controllers: [activity_controller_1.ActivityController],
         imports: [typeorm_1.TypeOrmModule.forFeature([activity_entity_1.Activity])],
         providers: [activity_service_1.ActivityService],

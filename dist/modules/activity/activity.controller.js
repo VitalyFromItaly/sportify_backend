@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 let ActivityController = class ActivityController {
 };
 ActivityController = __decorate([
-    common_1.Controller('activity')
+    (0, common_1.Controller)('activity')
 ], ActivityController);
 exports.ActivityController = ActivityController;
 //# sourceMappingURL=activity.controller.js.map

@@ -54,46 +54,46 @@ let AuthController = class AuthController {
     }
 };
 __decorate([
-    auth_decorators_1.Public(),
-    swagger_1.ApiOperation({ operationId: 'login' }),
-    common_1.Post('login'),
-    swagger_1.ApiCreatedResponse({ description: 'login', type: Token_dto_1.TokenDto }),
-    common_1.UseGuards(local_auth_guard_1.LocalAuthGuard),
-    common_1.HttpCode(200),
-    __param(0, common_1.Body()),
+    (0, auth_decorators_1.Public)(),
+    (0, swagger_1.ApiOperation)({ operationId: 'login' }),
+    (0, common_1.Post)('login'),
+    (0, swagger_1.ApiCreatedResponse)({ description: 'login', type: Token_dto_1.TokenDto }),
+    (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [UserCreds_dto_1.UserCredsDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([
-    common_1.Post('refresh-access-token'),
-    swagger_1.ApiOperation({ operationId: 'refreshAccessToken' }),
-    swagger_1.ApiBearerAuth(),
-    swagger_1.ApiDefaultResponse({ description: 'refresh tokens', type: Token_dto_1.TokenDto }),
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.HttpCode(200),
-    __param(0, common_1.Body()),
-    __param(1, common_1.Request()),
+    (0, common_1.Post)('refresh-access-token'),
+    (0, swagger_1.ApiOperation)({ operationId: 'refreshAccessToken' }),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiDefaultResponse)({ description: 'refresh tokens', type: Token_dto_1.TokenDto }),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RefreshToken_dto_1.RefreshTokenDto, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "getAccessToken", null);
 __decorate([
-    common_1.Post('refresh-tokens'),
-    swagger_1.ApiOperation({ operationId: 'refreshTokens' }),
-    swagger_1.ApiBearerAuth(),
-    swagger_1.ApiDefaultResponse({ description: 'refresh tokens', type: Token_dto_1.TokenDto }),
-    common_1.UseGuards(jwt_auth_guard_1.JwtAuthGuard),
-    common_1.HttpCode(200),
-    __param(0, common_1.Body()),
-    __param(1, common_1.Request()),
+    (0, common_1.Post)('refresh-tokens'),
+    (0, swagger_1.ApiOperation)({ operationId: 'refreshTokens' }),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiDefaultResponse)({ description: 'refresh tokens', type: Token_dto_1.TokenDto }),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [RefreshToken_dto_1.RefreshTokenDto, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "getTokens", null);
 AuthController = __decorate([
-    swagger_1.ApiTags('Auth'),
-    common_1.Controller('auth'),
+    (0, swagger_1.ApiTags)('Auth'),
+    (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService, user_service_1.UserService])
 ], AuthController);
 exports.AuthController = AuthController;
