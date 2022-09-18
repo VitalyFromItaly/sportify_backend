@@ -13,6 +13,7 @@ exports.UpdateUserProfileDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const activity_entity_1 = require("../../activity/entities/activity.entity");
+const dictionary_domain_1 = require("../../dictionary/dictionary.domain");
 const user_domain_1 = require("../user.domain");
 class UpdateUserProfileDto {
 }
@@ -62,11 +63,11 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         description: 'user`s goal',
-        example: user_domain_1.EGoal.WEIGHT_MAINTENANCE
+        example: dictionary_domain_1.EGoal.WEIGHT_MAINTENANCE
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.Min)(user_domain_1.EGoal.WEIGHT_REDUCTION),
-    (0, class_validator_1.Max)(user_domain_1.EGoal.COMPETITION_PREPARATION),
+    (0, class_validator_1.Min)(dictionary_domain_1.EGoal.WEIGHT_REDUCTION),
+    (0, class_validator_1.Max)(dictionary_domain_1.EGoal.COMPETITION_PREPARATION),
     __metadata("design:type", Number)
 ], UpdateUserProfileDto.prototype, "goal", void 0);
 __decorate([

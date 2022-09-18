@@ -8,7 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ActivityService = void 0;
 const common_1 = require("@nestjs/common");
+const activity_entity_1 = require("./entities/activity.entity");
 let ActivityService = class ActivityService {
+    async findAll() {
+        return await activity_entity_1.Activity.find();
+    }
 };
 ActivityService = __decorate([
     (0, common_1.Injectable)()

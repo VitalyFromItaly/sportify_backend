@@ -18,6 +18,7 @@ const user_domain_1 = require("../user.domain");
 const swagger_1 = require("@nestjs/swagger");
 const comment_entity_1 = require("./comment.entity");
 const activity_entity_1 = require("../../activity/entities/activity.entity");
+const dictionary_domain_1 = require("../../dictionary/dictionary.domain");
 let User = class User extends typeorm_1.BaseEntity {
     toJSON() {
         return (0, class_transformer_1.instanceToPlain)(this);
@@ -98,13 +99,13 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: 'user`s training goal',
-        example: user_domain_1.EGoal.WEIGHT_REDUCTION,
+        example: dictionary_domain_1.EGoal.WEIGHT_REDUCTION,
         nullable: false
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, typeorm_1.Column)({ type: 'enum', enum: user_domain_1.EGoal, default: user_domain_1.EGoal.WEIGHT_MAINTENANCE, nullable: false }),
-    (0, class_validator_1.Min)(user_domain_1.EGoal.WEIGHT_REDUCTION),
-    (0, class_validator_1.Max)(user_domain_1.EGoal.COMPETITION_PREPARATION),
+    (0, typeorm_1.Column)({ type: 'enum', enum: dictionary_domain_1.EGoal, default: dictionary_domain_1.EGoal.WEIGHT_MAINTENANCE, nullable: false }),
+    (0, class_validator_1.Min)(dictionary_domain_1.EGoal.WEIGHT_REDUCTION),
+    (0, class_validator_1.Max)(dictionary_domain_1.EGoal.COMPETITION_PREPARATION),
     __metadata("design:type", Number)
 ], User.prototype, "goal", void 0);
 __decorate([

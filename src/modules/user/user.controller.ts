@@ -54,10 +54,10 @@ export class UserController {
   }
 
   @Post('/leave-comment')
-  @ApiOperation({ operationId: 'leaveComment' })
-  @ApiBearerAuth()
-  @ApiDefaultResponse({ description: 'user suggestion/comment', type: CreateResponse })
-  @HttpCode(201)
+    @ApiOperation({ operationId: 'leaveComment' })
+    @ApiBearerAuth()
+    @ApiDefaultResponse({ description: 'user suggestion/comment', type: CreateResponse })
+    @HttpCode(201)
   async leaveComment(@Request() req: any, @Body(SETTINGS.VALIDATION_PIPE) comment: CommentDto): Promise<THttpResponse> {
     return await this.usersService.createComment(req.user.id, comment.comment);
   }

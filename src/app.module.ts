@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmConfigService } from './database/typeorm.config.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ActivityModule } from './modules/activity/activity.module';
+import { DictionaryModule } from './modules/dictionary/dictionary.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { ActivityModule } from './modules/activity/activity.module';
     UserModule,
     TypeOrmModule.forRootAsync({ imports: [ConfigModule], useClass: TypeOrmConfigService }),
     AuthModule,
-    ActivityModule
+    ActivityModule,
+    DictionaryModule
   ],
   controllers: [AppController],
   providers: [AppService]

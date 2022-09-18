@@ -17,6 +17,7 @@ const config_2 = require("@nestjs/config");
 const typeorm_config_service_1 = require("./database/typeorm.config.service");
 const auth_module_1 = require("./modules/auth/auth.module");
 const activity_module_1 = require("./modules/activity/activity.module");
+const dictionary_module_1 = require("./modules/dictionary/dictionary.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -26,7 +27,8 @@ AppModule = __decorate([
             user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRootAsync({ imports: [config_2.ConfigModule], useClass: typeorm_config_service_1.TypeOrmConfigService }),
             auth_module_1.AuthModule,
-            activity_module_1.ActivityModule
+            activity_module_1.ActivityModule,
+            dictionary_module_1.DictionaryModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

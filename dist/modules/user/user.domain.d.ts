@@ -7,12 +7,6 @@ export declare enum EUserStatus {
     NEW = 0,
     KNOWN = 1
 }
-export declare enum EGoal {
-    WEIGHT_REDUCTION = 0,
-    MUSCLE_GAIN = 1,
-    WEIGHT_MAINTENANCE = 2,
-    COMPETITION_PREPARATION = 3
-}
 export declare type TUserComment = {
     comment: string;
     date: Date;
