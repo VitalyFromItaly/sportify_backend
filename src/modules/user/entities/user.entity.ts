@@ -2,10 +2,11 @@ import { IsOptional, Max, Min } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
-import { EGender, EGoal, ELanguages, EUserStatus } from '../user.domain';
+import { EGender, ELanguages, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
+import { EGoal } from 'src/modules/dictionary/dictionary.domain';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {

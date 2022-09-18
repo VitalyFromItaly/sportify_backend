@@ -1,7 +1,8 @@
 import { BaseEntity } from 'typeorm';
-import { EGender, EGoal, ELanguages } from '../user.domain';
+import { EGender, ELanguages } from '../user.domain';
 import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
+import { EGoal } from 'src/modules/dictionary/dictionary.domain';
 export declare class User extends BaseEntity {
     id: number;
     email: string;

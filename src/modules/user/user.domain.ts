@@ -5,15 +5,8 @@ export enum EGender {
 }
 
 export enum EUserStatus {
-  NEW = 0,
+  NEW,
   KNOWN
-}
-
-export enum EGoal {
-  WEIGHT_REDUCTION,
-  MUSCLE_GAIN,
-  WEIGHT_MAINTENANCE,
-  COMPETITION_PREPARATION
 }
 
 export type TUserComment = {
