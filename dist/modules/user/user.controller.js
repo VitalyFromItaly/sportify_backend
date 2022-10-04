@@ -31,6 +31,7 @@ let UserController = class UserController {
         return await this.usersService.findOneById(+id);
     }
     async create(user) {
+        console.log({ user });
         return await this.usersService.create(user);
     }
     async update(userProfile) {
@@ -48,6 +49,7 @@ __decorate([
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiOperation)({ operationId: 'fetchUserById' }),
     (0, swagger_1.ApiCreatedResponse)({ description: 'create user', type: user_entity_1.User }),
+    (0, swagger_1.ApiCreatedResponse)({ type: user_entity_1.User }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -59,6 +61,7 @@ __decorate([
     (0, swagger_1.ApiCreatedResponse)({ description: 'create user', type: CreateResponse_dto_1.CreateResponse }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'user can not register' }),
     (0, swagger_1.ApiOperation)({ operationId: 'create' }),
+    (0, swagger_1.ApiCreatedResponse)({ type: CreateResponse_dto_1.CreateResponse }),
     (0, common_1.HttpCode)(201),
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Body)(app_utils_1.SETTINGS.VALIDATION_PIPE)),
@@ -71,6 +74,7 @@ __decorate([
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiOperation)({ operationId: 'update' }),
     (0, swagger_1.ApiDefaultResponse)({ description: 'returns updated user info', type: user_entity_1.User }),
+    (0, swagger_1.ApiCreatedResponse)({ type: user_entity_1.User }),
     (0, common_1.HttpCode)(200),
     __param(0, (0, common_1.Body)(app_utils_1.SETTINGS.VALIDATION_PIPE)),
     __metadata("design:type", Function),
@@ -79,9 +83,10 @@ __decorate([
 ], UserController.prototype, "update", null);
 __decorate([
     (0, common_1.Get)(''),
-    (0, swagger_1.ApiOperation)({ operationId: 'get' }),
+    (0, swagger_1.ApiOperation)({ operationId: 'read' }),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiDefaultResponse)({ description: 'get user info by token', type: user_entity_1.User }),
+    (0, swagger_1.ApiCreatedResponse)({ type: user_entity_1.User }),
     (0, common_1.HttpCode)(200),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
@@ -93,6 +98,7 @@ __decorate([
     (0, swagger_1.ApiOperation)({ operationId: 'leaveComment' }),
     (0, swagger_1.ApiBearerAuth)(),
     (0, swagger_1.ApiDefaultResponse)({ description: 'user suggestion/comment', type: CreateResponse_dto_1.CreateResponse }),
+    (0, swagger_1.ApiCreatedResponse)({ type: CreateResponse_dto_1.CreateResponse }),
     (0, common_1.HttpCode)(201),
     __param(0, (0, common_1.Request)()),
     __param(1, (0, common_1.Body)(app_utils_1.SETTINGS.VALIDATION_PIPE)),

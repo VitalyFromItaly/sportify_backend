@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
-import { ApiBearerAuth, ApiDefaultResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation } from '@nestjs/swagger';
 import { TDictionary } from './dictionary.domain';
 import { DictionaryService } from './dictionary.service';
 import { DictionaryDto } from './dto/dictionary.dto';
@@ -12,6 +12,7 @@ export class DictionaryController {
   @ApiOperation({ operationId: 'read' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'project dictionary', type: DictionaryDto })
+  @ApiCreatedResponse({ type: DictionaryDto })
   @HttpCode(200)
   async findAll(): Promise<TDictionary> {
     return await this.dictionaryService.findAll();
