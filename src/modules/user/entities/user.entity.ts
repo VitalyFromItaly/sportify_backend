@@ -1,4 +1,4 @@
-import { IsOptional, Max, Min } from 'class-validator';
+import { IsDate, IsOptional, Max, Min } from 'class-validator';
 import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude, instanceToPlain } from 'class-transformer';
@@ -87,6 +87,7 @@ export class User extends BaseEntity {
     nullable: true
   })
   @IsOptional()
+  @IsDate()
   @Column({ type: 'date', default: null })
   birthday: Date;
 

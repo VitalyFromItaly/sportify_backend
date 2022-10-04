@@ -115,6 +115,7 @@ __decorate([
         nullable: true
     }),
     (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDate)(),
     (0, typeorm_1.Column)({ type: 'date', default: null }),
     __metadata("design:type", Date)
 ], User.prototype, "birthday", void 0);

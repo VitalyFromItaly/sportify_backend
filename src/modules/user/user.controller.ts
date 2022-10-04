@@ -19,6 +19,7 @@ export class UserController {
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'fetchUserById' })
   @ApiCreatedResponse({ description: 'create user', type: User })
+  @ApiCreatedResponse({ type: User })
   async read(@Param('id') id: string): Promise<User | undefined> {
     return await this.usersService.findOneById(+id);
   }
@@ -28,9 +29,11 @@ export class UserController {
   @ApiCreatedResponse({ description: 'create user', type: CreateResponse })
   @ApiBadRequestResponse({ description: 'user can not register' })
   @ApiOperation({ operationId: 'create' })
+  @ApiCreatedResponse({ type: CreateResponse })
   @HttpCode(201)
   @UseInterceptors(ClassSerializerInterceptor) // allows not to return @Exclude() fields in entity
   async create(@Body(SETTINGS.VALIDATION_PIPE) user: CreateUserDto): Promise<THttpResponse> {
+    console.log({ user });
     return await this.usersService.create(user);
   }
 
@@ -38,15 +41,17 @@ export class UserController {
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'update' })
   @ApiDefaultResponse({ description: 'returns updated user info', type: User })
+  @ApiCreatedResponse({ type: User })
   @HttpCode(200)
   async update(@Body(SETTINGS.VALIDATION_PIPE) userProfile: UpdateUserProfileDto): Promise<User> {
     return await this.usersService.updateUserProfile(userProfile);
   }
 
   @Get('')
-  @ApiOperation({ operationId: 'get' })
+  @ApiOperation({ operationId: 'read' })
   @ApiBearerAuth()
   @ApiDefaultResponse({ description: 'get user info by token', type: User })
+  @ApiCreatedResponse({ type: User })
   // @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   async getUser(@Request() req: any): Promise<User> {
@@ -57,6 +62,7 @@ export class UserController {
     @ApiOperation({ operationId: 'leaveComment' })
     @ApiBearerAuth()
     @ApiDefaultResponse({ description: 'user suggestion/comment', type: CreateResponse })
+    @ApiCreatedResponse({ type: CreateResponse })
     @HttpCode(201)
   async leaveComment(@Request() req: any, @Body(SETTINGS.VALIDATION_PIPE) comment: CommentDto): Promise<THttpResponse> {
     return await this.usersService.createComment(req.user.id, comment.comment);
