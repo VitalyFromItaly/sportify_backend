@@ -7,6 +7,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
 import { EGoal } from 'src/modules/dictionary/dictionary.domain';
+import { Plan } from 'src/modules/plan/entities/plan.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -107,6 +108,10 @@ export class User extends BaseEntity {
   @OneToMany(() => Comment, (comment) => comment.user)
   @JoinTable()
   comments?: Comment[];
+
+  @OneToMany(() => Plan, (plan) => plan.user)
+  @JoinTable()
+  plans?: Plan[];
 
   @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
   @ApiProperty({ description: 'user chosen language',  enum: ELanguages, type: 'enum', enumName: 'ELanguages' })

@@ -3,6 +3,7 @@ import { EGender, ELanguages } from '../user.domain';
 import { Comment } from './comment.entity';
 import { Activity } from 'src/modules/activity/entities/activity.entity';
 import { EGoal } from 'src/modules/dictionary/dictionary.domain';
+import { Plan } from 'src/modules/plan/entities/plan.entity';
 export declare class User extends BaseEntity {
     id: number;
     email: string;
@@ -17,6 +18,7 @@ export declare class User extends BaseEntity {
     refresh_token?: string;
     status: number;
     comments?: Comment[];
+    plans?: Plan[];
     language: ELanguages;
     activities?: Activity[];
     toJSON(): Record<string, any>;

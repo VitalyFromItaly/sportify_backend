@@ -9,6 +9,7 @@ import { TypeOrmConfigService } from './database/typeorm.config.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ActivityModule } from './modules/activity/activity.module';
 import { DictionaryModule } from './modules/dictionary/dictionary.module';
+import { PlanModule } from './modules/plan/plan.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { DictionaryModule } from './modules/dictionary/dictionary.module';
     TypeOrmModule.forRootAsync({ imports: [ConfigModule], useClass: TypeOrmConfigService }),
     AuthModule,
     ActivityModule,
-    DictionaryModule
+    DictionaryModule,
+    PlanModule
   ],
   controllers: [AppController],
   providers: [AppService]

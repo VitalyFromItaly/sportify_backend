@@ -18,6 +18,7 @@ const typeorm_config_service_1 = require("./database/typeorm.config.service");
 const auth_module_1 = require("./modules/auth/auth.module");
 const activity_module_1 = require("./modules/activity/activity.module");
 const dictionary_module_1 = require("./modules/dictionary/dictionary.module");
+const plan_module_1 = require("./modules/plan/plan.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -28,7 +29,8 @@ AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({ imports: [config_2.ConfigModule], useClass: typeorm_config_service_1.TypeOrmConfigService }),
             auth_module_1.AuthModule,
             activity_module_1.ActivityModule,
-            dictionary_module_1.DictionaryModule
+            dictionary_module_1.DictionaryModule,
+            plan_module_1.PlanModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

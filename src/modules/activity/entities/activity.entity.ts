@@ -1,5 +1,5 @@
 import { Max, Min } from 'class-validator';
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { EActivityType } from '../activity.domain';

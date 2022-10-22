@@ -19,6 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const comment_entity_1 = require("./comment.entity");
 const activity_entity_1 = require("../../activity/entities/activity.entity");
 const dictionary_domain_1 = require("../../dictionary/dictionary.domain");
+const plan_entity_1 = require("../../plan/entities/plan.entity");
 let User = class User extends typeorm_1.BaseEntity {
     toJSON() {
         return (0, class_transformer_1.instanceToPlain)(this);
@@ -139,6 +140,11 @@ __decorate([
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], User.prototype, "comments", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => plan_entity_1.Plan, (plan) => plan.user),
+    (0, typeorm_1.JoinTable)(),
+    __metadata("design:type", Array)
+], User.prototype, "plans", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: user_domain_1.ELanguages.EN, enum: user_domain_1.ELanguages, type: 'enum', enumName: 'ELanguages' }),
     (0, swagger_1.ApiProperty)({ description: 'user chosen language', enum: user_domain_1.ELanguages, type: 'enum', enumName: 'ELanguages' }),
