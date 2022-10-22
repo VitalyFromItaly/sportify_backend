@@ -1,9 +1,10 @@
 import { Controller, Get, HttpCode } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TDictionary } from './dictionary.domain';
 import { DictionaryService } from './dictionary.service';
 import { DictionaryDto } from './dto/dictionary.dto';
 
+@ApiTags('Dictionary')
 @Controller('dictionary')
 export class DictionaryController {
   constructor(private readonly dictionaryService: DictionaryService) {}

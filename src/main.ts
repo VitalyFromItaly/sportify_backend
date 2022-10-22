@@ -21,7 +21,6 @@ async function bootstrap() {
     httpsOptions: httpConfig
   });
 
-
   const config = app.get(ConfigService);
   app.setGlobalPrefix(config.get<string>('api_prefix'));
   app.enableCors();
@@ -34,11 +33,11 @@ async function bootstrap() {
 
 
   const swaggerConfig = new DocumentBuilder()
-  .setTitle('Sportify Api')
-  .setDescription('Sportify API description')
-  .setVersion('1.0')
-  .addBearerAuth()
-  .build();
+    .setTitle('Sportify Api')
+    .setDescription('Sportify API description')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup(`${config.get<string>('api_prefix')}/swagger`, app, document);
 

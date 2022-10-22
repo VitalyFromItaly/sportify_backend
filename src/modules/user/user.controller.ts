@@ -33,7 +33,6 @@ export class UserController {
   @HttpCode(201)
   @UseInterceptors(ClassSerializerInterceptor) // allows not to return @Exclude() fields in entity
   async create(@Body(SETTINGS.VALIDATION_PIPE) user: CreateUserDto): Promise<THttpResponse> {
-    console.log({ user });
     return await this.usersService.create(user);
   }
 
