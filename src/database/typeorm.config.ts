@@ -1,7 +1,7 @@
 // import { DataSource } from 'typeorm';
 // import { ConfigService } from '@nestjs/config';
 // import { config } from 'dotenv';
-// import { Activity1662705329557 } from 'src/migrations/Activity1662705329557';
+// import { Activity1662705329557 } from '~/migrations/Activity1662705329557';
  
 // config();
  

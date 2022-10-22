@@ -1,4 +1,4 @@
-import { THttpResponse } from 'src/common/types/Http';
+import { THttpResponse } from '~/common/types/Http';
 import { CommentDto } from './dtos/Comment.dto';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';

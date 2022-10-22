@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Activity } from 'src/modules/activity/entities/activity.entity';
+import { Activity } from '~/modules/activity/entities/activity.entity';
 import { TLocaleSelectOption } from '../dictionary.domain';
 import { AbstractSelectDto } from './select.dto';
 export class DictionaryDto {

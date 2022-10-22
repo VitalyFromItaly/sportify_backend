@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber } from 'class-validator';
-import { EHttpStatus } from 'src/common/types/Http';
+import { EHttpStatus } from '~/common/types/Http';
 
 export class CreateResponse {
   @ApiProperty({

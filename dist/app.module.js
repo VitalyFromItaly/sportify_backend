@@ -12,7 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const user_module_1 = require("./modules/user/user.module");
-const config_1 = require("./database/config");
+const config_1 = require("./config");
 const config_2 = require("@nestjs/config");
 const typeorm_config_service_1 = require("./database/typeorm.config.service");
 const auth_module_1 = require("./modules/auth/auth.module");
@@ -23,7 +23,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_2.ConfigModule.forRoot({ isGlobal: true, load: [config_1.default] }),
+            config_2.ConfigModule.forRoot({ isGlobal: true, load: [config_1.appConfig, config_1.databaseConfig] }),
             user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRootAsync({ imports: [config_2.ConfigModule], useClass: typeorm_config_service_1.TypeOrmConfigService }),
             auth_module_1.AuthModule,

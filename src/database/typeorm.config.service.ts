@@ -45,7 +45,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       // synchronize: true, //isDev, временно пока не накодим базовую базу
       // migrationsRun: true,
       // migrationsTableName: 'migrations',
-      migrations: ['src/migrations/*.ts']
+      migrations: ['~/migrations/*.ts']
       // logging: true
       // dropSchema: !isDev,
     };

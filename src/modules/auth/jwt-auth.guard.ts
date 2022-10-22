@@ -10,7 +10,6 @@ export class JwtAuthGuard extends AuthGuard(EStrategies.JWT) {
   }
 
   canActivate(context: ExecutionContext) {
-    
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass()

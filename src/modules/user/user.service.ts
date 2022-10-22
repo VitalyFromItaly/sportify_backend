@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { MESSAGES } from 'src/app.utils';
+import { MESSAGES } from '~/app.utils';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { THttpResponse, THttpStatus } from 'src/common/types/Http';
+import { THttpResponse, THttpStatus } from '~/common/types/Http';
 import { Comment } from './entities/comment.entity';
 @Injectable()
 export class UserService {

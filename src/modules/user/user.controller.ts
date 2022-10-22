@@ -1,8 +1,8 @@
 import { Body, ClassSerializerInterceptor, Controller, Get, HttpCode, Param, Post, Put, UseInterceptors, Request } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { SETTINGS } from 'src/app.utils';
-import { CreateResponse } from 'src/common/dtos/CreateResponse.dto';
-import { THttpResponse } from 'src/common/types/Http';
+import { SETTINGS } from '~/app.utils';
+import { CreateResponse } from '~/common/dtos/CreateResponse.dto';
+import { THttpResponse } from '~/common/types/Http';
 import { Public } from '../auth/auth.decorators';
 import { CommentDto } from './dtos/Comment.dto';
 import { CreateUserDto } from './dtos/CreateUser.dto';

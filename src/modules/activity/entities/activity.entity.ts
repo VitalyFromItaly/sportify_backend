@@ -3,7 +3,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, JoinTable, Ma
 import { Exclude, instanceToPlain } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { EActivityType } from '../activity.domain';
-import { User } from 'src/modules/user/entities/user.entity';
+import { User } from '~/modules/user/entities/user.entity';
 
 @Entity({ name: 'activity' })
 export class Activity extends BaseEntity {

@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, Length, Matches } from 'class-validator';
-import { MESSAGES, REGEX } from 'src/app.utils';
-import { Match } from 'src/common/decorators/match.decorator';
+import { MESSAGES, REGEX } from '~/app.utils';
+import { Match } from '~/common/decorators/match.decorator';
 import { ELanguages } from '../user.domain';
 
 export class CreateUserDto {

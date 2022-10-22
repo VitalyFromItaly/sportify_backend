@@ -1,4 +1,4 @@
-import { Activity } from 'src/modules/activity/entities/activity.entity';
+import { Activity } from '~/modules/activity/entities/activity.entity';
 import { ELanguages } from '../user.domain';
 export declare class UpdateUserProfileDto {
     id: number;

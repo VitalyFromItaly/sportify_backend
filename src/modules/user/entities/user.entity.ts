@@ -5,15 +5,15 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 import { EGender, ELanguages, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from './comment.entity';
-import { Activity } from 'src/modules/activity/entities/activity.entity';
-import { EGoal } from 'src/modules/dictionary/dictionary.domain';
+import { Activity } from '~/modules/activity/entities/activity.entity';
+import { EGoal } from '~/modules/dictionary/dictionary.domain';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
     @ApiProperty({
       description: 'user`s uniq id',
       example: 45
-    })  
+    })
   @PrimaryGeneratedColumn({ comment: 'user uniq id' })
   id: number;
 
@@ -139,7 +139,7 @@ export class User extends BaseEntity {
   // @BeforeInsert()
   // async setHashedAccessToken(access_token: string) {
   //   console.log({ access_token: access_token || this.access_token });
-    
+
   //   if (access_token || this.access_token) {
   //     const salt = await bcrypt.genSalt();
   //     this.access_token = await bcrypt.hash(access_token || this.access_token, salt);

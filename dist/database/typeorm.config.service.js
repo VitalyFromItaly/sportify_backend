@@ -30,7 +30,7 @@ let TypeOrmConfigService = class TypeOrmConfigService {
                 synchronize: this.configService.get('db.synchronize')
             };
         }
-        return Object.assign(Object.assign({}, dbConfig), { type: 'mysql', entities: ['dist/**/*.entity{.ts,.js}'], migrations: ['src/migrations/*.ts'] });
+        return Object.assign(Object.assign({}, dbConfig), { type: 'mysql', entities: ['dist/**/*.entity{.ts,.js}'], migrations: ['~/migrations/*.ts'] });
     }
 };
 TypeOrmConfigService = __decorate([

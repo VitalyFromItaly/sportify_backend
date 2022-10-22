@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
-import { MESSAGES } from 'src/app.utils';
+import { MESSAGES } from '~/app.utils';
 import { JwtService } from '@nestjs/jwt';
 import { EExpirationTime } from './auth.constants';
 import { TUserCreds } from './auth.domain';

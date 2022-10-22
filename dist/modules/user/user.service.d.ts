@@ -1,7 +1,7 @@
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
-import { THttpResponse } from 'src/common/types/Http';
+import { THttpResponse } from '~/common/types/Http';
 export declare class UserService {
     findAll(): number[];
     create(userDto: CreateUserDto): Promise<THttpResponse>;
