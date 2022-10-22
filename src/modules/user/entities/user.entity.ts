@@ -57,6 +57,7 @@ export class User extends BaseEntity {
     example: 178,
     nullable: true
   })
+
   @IsOptional()
   @Column({ default: null })
   height: number;
