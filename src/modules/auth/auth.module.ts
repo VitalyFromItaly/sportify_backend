@@ -7,13 +7,11 @@ import { LocalStrategy } from './local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import config from './auth.config';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: false, load: [config] }),
     UserModule,
     PassportModule,
     JwtModule.registerAsync({

@@ -13,12 +13,12 @@ async function bootstrap() {
   if (isDev) {
     httpConfig = {
       key: readFileSync(process.env.SSL_KEY_PATH),
-      cert: readFileSync(process.env.SSL_CERT_PATH),
+      cert: readFileSync(process.env.SSL_CERT_PATH)
     } as HttpsOptions;
   }
 
   const app = await NestFactory.create(AppModule, {
-    httpsOptions: httpConfig,
+    httpsOptions: httpConfig
   });
 
 

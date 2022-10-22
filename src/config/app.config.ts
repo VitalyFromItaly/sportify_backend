@@ -4,6 +4,6 @@ export default () => {
     address: process.env.ADDRESS || '0.0.0.0',
     environment: process.env.NODE_ENV || 'development',
     is_dev: process.env.NODE_ENV === 'development',
-    api_prefix: 'api',
+    api_prefix: 'api'
   };
 };
