@@ -12,11 +12,11 @@ async function bootstrap() {
     if (isDev) {
         httpConfig = {
             key: (0, fs_1.readFileSync)(process.env.SSL_KEY_PATH),
-            cert: (0, fs_1.readFileSync)(process.env.SSL_CERT_PATH),
+            cert: (0, fs_1.readFileSync)(process.env.SSL_CERT_PATH)
         };
     }
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
-        httpsOptions: httpConfig,
+        httpsOptions: httpConfig
     });
     const config = app.get(config_1.ConfigService);
     app.setGlobalPrefix(config.get('api_prefix'));

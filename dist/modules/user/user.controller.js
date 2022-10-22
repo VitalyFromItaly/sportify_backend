@@ -31,7 +31,6 @@ let UserController = class UserController {
         return await this.usersService.findOneById(+id);
     }
     async create(user) {
-        console.log({ user });
         return await this.usersService.create(user);
     }
     async update(userProfile) {

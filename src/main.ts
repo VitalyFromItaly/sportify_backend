@@ -13,14 +13,13 @@ async function bootstrap() {
   if (isDev) {
     httpConfig = {
       key: readFileSync(process.env.SSL_KEY_PATH),
-      cert: readFileSync(process.env.SSL_CERT_PATH),
+      cert: readFileSync(process.env.SSL_CERT_PATH)
     } as HttpsOptions;
   }
 
   const app = await NestFactory.create(AppModule, {
-    httpsOptions: httpConfig,
+    httpsOptions: httpConfig
   });
-
 
   const config = app.get(ConfigService);
   app.setGlobalPrefix(config.get<string>('api_prefix'));
@@ -34,11 +33,11 @@ async function bootstrap() {
 
 
   const swaggerConfig = new DocumentBuilder()
-  .setTitle('Sportify Api')
-  .setDescription('Sportify API description')
-  .setVersion('1.0')
-  .addBearerAuth()
-  .build();
+    .setTitle('Sportify Api')
+    .setDescription('Sportify API description')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup(`${config.get<string>('api_prefix')}/swagger`, app, document);
 
