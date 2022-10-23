@@ -23,7 +23,7 @@
     "migration:run": "npm run typeorm migration:run -- -d ./orm.config.ts",
     "migration:revert": "npm run typeorm -- -d ./orm.config.ts migration:revert",
     "migration:create": "npm run typeorm migration:create",
-    "migration:generate": "npm run typeorm -- -d ./orm.config.ts migration:generate"
+    "migration:generate": "npm run build && npm run typeorm -- -d ./orm.config.ts migration:generate"
   },
   "engines": {
     "node": "16.16.0"

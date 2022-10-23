@@ -24,6 +24,13 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', unique: true })
   email: string;
 
+  @ApiProperty({
+    description: 'user`s email',
+    example: 'email@email.com'
+  })
+  @Column({ type: 'varchar', unique: true })
+  email2: string;
+
   @Exclude({ toPlainOnly: true })
   @Column({ type: 'varchar' })
   password: string;
