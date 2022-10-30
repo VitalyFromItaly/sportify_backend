@@ -110,7 +110,7 @@ export class User extends BaseEntity {
   @JoinTable()
   comments?: Comment[];
 
-  @OneToMany(() => TrainingPlan, (plan) => plan.user)
+  @OneToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.user)
   @JoinTable()
   plans?: TrainingPlan[];
 
