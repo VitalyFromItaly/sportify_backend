@@ -25,7 +25,6 @@ export class TrainingPlan extends BaseEntity {
   goal: EGoal;
 
   @ManyToOne(() => User, (user) => user.plans)
-  @Column({ type: 'int' })
   @JoinColumn({ name: 'user_id' })
   @ApiProperty({ description: 'user id' })
   user: User;
