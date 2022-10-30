@@ -7,6 +7,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from './comment.entity';
 import { Activity } from '~/modules/activity/entities/activity.entity';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
+import { TrainingPlan } from '~/modules/training-plan/infrastructure/entities/training-plan.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -23,13 +24,6 @@ export class User extends BaseEntity {
   })
   @Column({ type: 'varchar', unique: true })
   email: string;
-
-  @ApiProperty({
-    description: 'user`s email',
-    example: 'email@email.com'
-  })
-  @Column({ type: 'varchar', unique: true })
-  email2: string;
 
   @Exclude({ toPlainOnly: true })
   @Column({ type: 'varchar' })
@@ -115,6 +109,11 @@ export class User extends BaseEntity {
   @OneToMany(() => Comment, (comment) => comment.user)
   @JoinTable()
   comments?: Comment[];
+
+  // @OneToMany(() => TrainingPlan, (plan) => plan.user)
+  // @JoinTable()
+  @Column({ type:'int' })
+  plans?: TrainingPlan[];
 
   @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
   @ApiProperty({ description: 'user chosen language',  enum: ELanguages, type: 'enum', enumName: 'ELanguages' })

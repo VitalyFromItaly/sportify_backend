@@ -9,9 +9,7 @@ import { TypeOrmConfigService } from './database/typeorm.config.service';
 import { AuthModule } from '~/modules/auth/auth.module';
 import { ActivityModule } from '~/modules/activity/activity.module';
 import { DictionaryModule } from '~/modules/dictionary/dictionary.module';
-import { TrainigPlanModule } from './trainig_plan/trainig_plan.module';
-import { TrainigPlanModule } from './modules/trainig_plan/trainig_plan.module';
-import { TrainingPlanModule } from './modules/training_plan/training-plan.module';
+import { TrainingPlanModule } from './modules/training-plan/training-plan.module';
 
 @Module({
   imports: [
@@ -24,7 +22,6 @@ import { TrainingPlanModule } from './modules/training_plan/training-plan.module
     AuthModule,
     ActivityModule,
     DictionaryModule,
-    TrainigPlanModule,
     TrainingPlanModule
   ],
   controllers: [AppController],
