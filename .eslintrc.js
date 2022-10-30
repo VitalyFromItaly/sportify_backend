@@ -40,6 +40,7 @@ module.exports = {
     '@typescript-eslint/space-before-function-paren': ['error', 'never'],
     'semi': 'off',
     'camelcase': 'off',
+    "@typescript-eslint/ban-ts-comment": "off",
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/switch-exhaustiveness-check': 'error',
     'no-useless-constructor': 'off',

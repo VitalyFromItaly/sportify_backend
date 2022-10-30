@@ -1,9 +1,10 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { instanceToPlain } from 'class-transformer';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
 import { Max, Min } from 'class-validator';
 import { User } from '~/modules/user/entities/user.entity';
+import { Activity } from '~/modules/activity/entities/activity.entity';
 
 @Entity({ name: 'training_plan' })
 export class TrainingPlan extends BaseEntity {
@@ -36,6 +37,10 @@ export class TrainingPlan extends BaseEntity {
   @ApiProperty({ description: 'durations of the plan' })
   @Column({ type: 'int', default: 6 })
   duration: number;
+
+  @ApiProperty({ description: 'user plan activities', type: [Activity] })
+  @ManyToMany(() => Activity, (activity) => activity.trainingPlan, { eager: true })
+  activities?: Activity[];
   
   @ApiProperty({
     description: 'date user was created',

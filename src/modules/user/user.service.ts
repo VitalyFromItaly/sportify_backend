@@ -8,10 +8,6 @@ import { THttpResponse } from '~/common/types/Http';
 import { Comment } from './entities/comment.entity';
 @Injectable()
 export class UserService {
-  findAll() {
-    return [1,2,3];
-  }
-
   public async create(userDto: CreateUserDto): Promise<THttpResponse> {
     delete userDto.password_confirm;
 

@@ -4,6 +4,7 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { EActivityType } from '../activity.domain';
 import { User } from '~/modules/user/entities/user.entity';
+import { TrainingPlan } from '~/modules/training-plan/infrastructure/entities/training-plan.entity';
 
 @Entity({ name: 'activity' })
 export class Activity extends BaseEntity {
@@ -36,6 +37,10 @@ export class Activity extends BaseEntity {
     @ManyToMany(() => User, (user) => user.activities)
     @JoinTable({  name: 'user_activities' })
     user: User[];
+
+    @ManyToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.activities)
+    @JoinTable({  name: 'training_plan_activities' })
+    trainingPlan: TrainingPlan[];
 
     @Exclude({ toPlainOnly: true })
     @ApiProperty({
