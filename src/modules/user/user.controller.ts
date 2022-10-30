@@ -9,9 +9,12 @@ import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UpdateUserProfileDto } from './dtos/UpdateUserProfile.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
+import { WsAction } from '@drozd/nestjs-ws-api';
 
-@ApiTags('User')
-@Controller('user')
+const NAMESPACE = 'user';
+
+@ApiTags(NAMESPACE)
+@Controller(NAMESPACE)
 export class UserController {
   constructor(private readonly usersService: UserService) {}
 
@@ -53,8 +56,13 @@ export class UserController {
   @ApiCreatedResponse({ type: User })
   // @UseGuards(JwtAuthGuard)
   @HttpCode(200)
-  async getUser(@Request() req: any): Promise<User> {
-    return req.user;
+  @WsAction(NAMESPACE)
+  async getUser(@Request() req: any, ws : { user: User }): Promise<User> {
+    if (ws) {
+      return ws.user;
+    } else {
+      return req.user;
+    }
   }
 
   @Post('/leave-comment')
