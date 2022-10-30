@@ -110,9 +110,8 @@ export class User extends BaseEntity {
   @JoinTable()
   comments?: Comment[];
 
-  // @OneToMany(() => TrainingPlan, (plan) => plan.user)
-  // @JoinTable()
-  @Column({ type:'int' })
+  @OneToMany(() => TrainingPlan, (plan) => plan.user)
+  @JoinTable()
   plans?: TrainingPlan[];
 
   @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })

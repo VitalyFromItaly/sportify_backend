@@ -24,14 +24,14 @@ export class TrainingPlan extends BaseEntity {
   @Max(EGoal.COMPETITION_PREPARATION)
   goal: EGoal;
 
-  // @ManyToOne(() => User, (user) => user.plans)
+  @ManyToOne(() => User, (user) => user.plans)
   @Column({ type: 'int' })
   @JoinColumn({ name: 'user_id' })
   @ApiProperty({ description: 'user id' })
   user: User;
 
   @ApiProperty({ description: 'date user start the plan' })
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
+  @Column({ type: 'timestamp', default: null })
   start_date: Date;
 
   @ApiProperty({ description: 'durations of the plan' })
