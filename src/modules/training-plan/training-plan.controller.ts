@@ -3,7 +3,6 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiBearerAuth, ApiCreatedResponse, ApiDefaultResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { SETTINGS } from '~/app.utils';
 import { TCommandResult } from '../../app.types';
-import { User } from '../user/entities/user.entity';
 import { RemoteCreateTrainingPlanCommand } from './application/commands/create-training-plan.command';
 import { CreateTrainingPlanDto } from './dto/create-training-plan.dto';
 
