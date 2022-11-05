@@ -29,6 +29,7 @@
     "node": "16.16.0"
   },
   "dependencies": {
+    "@drozd/nestjs-ws-api": "^1.0.9",
     "@nestjs/common": "9.0.11",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "9.0.11",
