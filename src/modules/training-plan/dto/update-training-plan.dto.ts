@@ -6,7 +6,8 @@ import { EGoal } from '~/modules/dictionary/dictionary.domain';
 export class UpdateTrainingPlanDto {
   @ApiProperty({
     description: 'plan`s uniq id',
-    example: 45
+    example: 45,
+    required: false
   })  
   id: number;
 
@@ -14,23 +15,24 @@ export class UpdateTrainingPlanDto {
     description: 'user`s training goal',
     example: EGoal.WEIGHT_REDUCTION,
     nullable: false,
-    maximum: 3,
-    minimum: 0
+    maximum: EGoal.COMPETITION_PREPARATION,
+    minimum: EGoal.WEIGHT_REDUCTION,
+    required: false
   })
   @Min(EGoal.WEIGHT_REDUCTION)
   @Max(EGoal.COMPETITION_PREPARATION)
   @IsOptional()
   goal?: EGoal;
 
-  @ApiProperty({ description: 'date user start the plan' })
+  @ApiProperty({ description: 'date user start the plan', required: false })
   @IsOptional()
   start_date?: Date;
 
-  @ApiProperty({ description: 'durations of the plan', minimum: 1, maximum: 6 })
+  @ApiProperty({ description: 'durations of the plan', minimum: 1, maximum: 6, required: false })
   @IsOptional()
   duration?: number;
 
-  @ApiProperty({ description: 'user plan activities', type: [Activity] })
+  @ApiProperty({ description: 'user plan activities', type: [Activity], required: false })
   @IsOptional()
   activities?: Activity[];
 }

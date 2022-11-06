@@ -39,6 +39,7 @@ export class TrainingPlanController {
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'readOne' })
   @ApiDefaultResponse({ description: 'get training plan by id', type: ReadTrainingPlanDto })
+  @ApiCreatedResponse({ type: ReadTrainingPlanDto })
   @HttpCode(200)
   async readOne(@Param('id') id: number,  @Req() { user }: { user: User }): Promise<ReadTrainingPlanDto> {
     return await this.queryBus.execute(new GetOneTrainingPlanQuery(id, user.id));
@@ -47,33 +48,30 @@ export class TrainingPlanController {
   @Get()
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'readAll' })
-  @ApiDefaultResponse({ description: 'get all user training plans', type: Array<ReadTrainingPlanDto> })
+  @ApiDefaultResponse({ description: 'get all user training plans', type: [ReadTrainingPlanDto] })
+  @ApiCreatedResponse({ type: Array<ReadTrainingPlanDto> })
   @HttpCode(200)
-  async readAll(@Req() { user }: { user: User }): Promise<any> {
+  async readAll(@Req() { user }: { user: User }): Promise<ReadTrainingPlanDto[]> {
     return await this.queryBus.execute(new GetAllTrainingPlansQuery(+user.id));
   }
 
   @Put('/:id')
-  @ApiParam({
-    name: 'id',
-    description: 'training plan id'
-  })
+  @ApiParam({ name: 'id', description: 'training plan id' })
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'update' })
+  @ApiCreatedResponse({ type: CommandResult })
   @HttpCode(200)
-  public async update(@Param('id') id: string, @Body(SETTINGS.VALIDATION_PIPE) payload: UpdateTrainingPlanDto, @Req() { user }: { user: User }): Promise<TCommandResult> {
+  public async update(@Param('id') id: number, @Body(SETTINGS.VALIDATION_PIPE) payload: UpdateTrainingPlanDto, @Req() { user }: { user: User }): Promise<TCommandResult> {
     return await this.commandBus.execute<UpdateTrainingPlanCommand, TCommandResult>(
       new UpdateTrainingPlanCommand(+id, payload, user.id)
     );
   }
 
   @Delete('/:id')
-  @ApiParam({
-    name: 'id',
-    description: 'training plan id to delete'
-  })
+  @ApiParam({ name: 'id', description: 'training plan id to delete' })
   @ApiBearerAuth()
   @ApiOperation({ operationId: 'delete' })
+  @ApiCreatedResponse({ type: CommandResult })
   @HttpCode(200)
   public async delete(@Param('id') id: string, @Req() { user }: { user: User }): Promise<TCommandResult> {
     return await this.commandBus.execute<DeleteTrainingPlanCommand, TCommandResult>(
