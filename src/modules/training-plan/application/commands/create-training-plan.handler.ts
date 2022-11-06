@@ -10,13 +10,14 @@ export class CreateTrainingPlanHandler implements ICommandHandler<RemoteCreateTr
   constructor(private readonly userService: UserService, readonly commandBus: CommandBus) {}
 
   async execute(command: RemoteCreateTrainingPlanCommand): Promise<CommandResult> {
-    console.log({ command });
     const user = await this.userService.findOneById(command.userId);
 
     if (!user) {
       throw new NotFoundException('User not found');
     }
+
     const trainingPlan = new TrainingPlan();
+    trainingPlan.user = user;
     Object.assign(trainingPlan, command.newPlan);
     await trainingPlan.save();
 

@@ -59,5 +59,4 @@ export class TrainingPlan extends BaseEntity {
   toJSON() {
     return instanceToPlain(this);
   }
-
 }
