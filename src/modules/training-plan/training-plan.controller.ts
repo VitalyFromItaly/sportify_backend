@@ -73,7 +73,7 @@ export class TrainingPlanController {
   @ApiOperation({ operationId: 'delete' })
   @ApiCreatedResponse({ type: CommandResult })
   @HttpCode(200)
-  public async delete(@Param('id') id: string, @Req() { user }: { user: User }): Promise<TCommandResult> {
+  public async delete(@Param('id') id: number, @Req() { user }: { user: User }): Promise<TCommandResult> {
     return await this.commandBus.execute<DeleteTrainingPlanCommand, TCommandResult>(
       new DeleteTrainingPlanCommand(+id, user.id)
     );
