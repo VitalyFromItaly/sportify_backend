@@ -11,10 +11,10 @@ import { TrainingPlan } from '~/modules/training-plan/infrastructure/entities/tr
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
-    @ApiProperty({
-      description: 'user`s uniq id',
-      example: 45
-    })
+  @ApiProperty({
+    description: 'user`s uniq id',
+    example: 45
+  })
   @PrimaryGeneratedColumn({ comment: 'user uniq id' })
   id: number;
 
@@ -58,7 +58,6 @@ export class User extends BaseEntity {
     example: 178,
     nullable: true
   })
-
   @IsOptional()
   @Column({ default: null })
   height: number;
@@ -90,7 +89,7 @@ export class User extends BaseEntity {
   })
   @IsOptional()
   @IsDate()
-  @Column({ type: 'date', default: null })
+  @Column({ type: 'timestamp', default: null })
   birthday: Date;
 
   @Column({ nullable: true, type: 'longtext' })
@@ -110,7 +109,7 @@ export class User extends BaseEntity {
   @JoinTable()
   comments?: Comment[];
 
-  @OneToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.user)
+  @OneToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.user, { cascade: true })
   @JoinTable()
   plans?: TrainingPlan[];
 
