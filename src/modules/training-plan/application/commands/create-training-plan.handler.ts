@@ -1,4 +1,3 @@
-import { NotFoundException } from '@nestjs/common';
 import { CommandBus, CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { CommandResult } from '~/common/dtos/command-result.dto';
 import { UserService } from '~/modules/user/user.service';
@@ -11,10 +10,6 @@ export class CreateTrainingPlanHandler implements ICommandHandler<RemoteCreateTr
 
   async execute(command: RemoteCreateTrainingPlanCommand): Promise<CommandResult> {
     const user = await this.userService.findOneById(command.userId);
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
 
     const trainingPlan = new TrainingPlan();
     trainingPlan.user = user;

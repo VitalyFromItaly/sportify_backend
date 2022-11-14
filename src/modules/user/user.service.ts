@@ -32,7 +32,7 @@ export class UserService {
 
   public async updateUserProfile(userProfileDto: UpdateUserProfileDto): Promise<User> {
     const user = await this.findOneById(userProfileDto.id);
-
+    
     const updatedUser = Object.assign(user, userProfileDto);
     await updatedUser.save();
 

@@ -89,7 +89,7 @@ export class User extends BaseEntity {
   })
   @IsOptional()
   @IsDate()
-  @Column({ type: 'date', default: null })
+  @Column({ type: 'timestamp', default: null })
   birthday: Date;
 
   @Column({ nullable: true, type: 'longtext' })
