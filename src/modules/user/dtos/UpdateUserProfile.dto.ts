@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, Max, Min } from 'class-validator';
-import { Activity } from '~/modules/activity/entities/activity.entity';
+import { ActivityEntity } from '~/modules/activity/entities/activity.entity';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
 import { EGender, ELanguages, EUserStatus } from '../user.domain';
 
@@ -80,8 +80,8 @@ export class UpdateUserProfileDto {
   @IsOptional()
   language?: ELanguages;
 
-  @ApiPropertyOptional({ description: 'user activities ', type: [Activity] })
+  @ApiPropertyOptional({ description: 'user activities ', type: [ActivityEntity] })
   @IsOptional()
-  activities?: Activity[];
+  activities?: ActivityEntity[];
 
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Activity } from './entities/activity.entity';
+import { ActivityEntity } from './entities/activity.entity';
 
 @Injectable()
 export class ActivityService {
-  async findAll(): Promise<Activity[]> {
-    return await Activity.find();
+  async findAll(): Promise<ActivityEntity[]> {
+    return await ActivityEntity.find();
   }
 }

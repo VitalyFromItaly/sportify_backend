@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
-import { TrainingPlan } from './infrastructure/entities/training-plan.entity';
+import { TrainingPlanEntity } from './infrastructure/entities/training-plan.entity';
 
 @Injectable()
 export class TrainingPlanService {
@@ -12,12 +10,12 @@ export class TrainingPlanService {
     private readonly userService: UserService
   ) {}
 
-  public async readOneById(id: number): Promise<TrainingPlan> {
-    return await TrainingPlan.findOne({ where: { id } });
+  public async readOneById(id: number): Promise<TrainingPlanEntity> {
+    return await TrainingPlanEntity.findOne({ where: { id } });
   }
 
-  public async readAllByUserId(userId: number): Promise<TrainingPlan[]> {
-    return await TrainingPlan.find({
+  public async readAllByUserId(userId: number): Promise<TrainingPlanEntity[]> {
+    return await TrainingPlanEntity.find({
       where: { user: { id: userId } }
     });
   }

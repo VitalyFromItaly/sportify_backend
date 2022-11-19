@@ -8,13 +8,29 @@ import { GetOneTrainingPlanByIdHandler } from './application/queries/get-one-pla
 import { UpdateTrainingPlanHandler } from './application/commands/update-training-plan.handler';
 import { GetAllTrainingPlansHandler } from './application/queries/get-all-plans.handler';
 import { DeleteTrainingPlanHandler } from './application/commands/delete-training-plan.handler';
+import { TrainingPlanActivityController } from '~/modules/training-plan/training-plan-activity.controller';
+import {
+  CreateTrainingPlanActivityHandler
+} from '~/modules/training-plan/application/commands/create-training-plan-activity.handler';
+import {
+  GetOneTrainingActivityHandler
+} from '~/modules/training-plan/application/queries/get-one-training-activity.handler';
 
-export const commandHandlers = [CreateTrainingPlanHandler, UpdateTrainingPlanHandler, DeleteTrainingPlanHandler];
-export const queriesHandlers = [GetAllTrainingPlansHandler, GetOneTrainingPlanByIdHandler];
+export const commandHandlers = [
+  CreateTrainingPlanHandler,
+  UpdateTrainingPlanHandler,
+  DeleteTrainingPlanHandler,
+  CreateTrainingPlanActivityHandler
+];
+export const queriesHandlers = [
+  GetAllTrainingPlansHandler,
+  GetOneTrainingPlanByIdHandler,
+  GetOneTrainingActivityHandler
+];
 
 @Module({
   imports: [CqrsModule, UserModule],
-  controllers: [TrainingPlanController],
+  controllers: [TrainingPlanController, TrainingPlanActivityController],
   providers: [TrainingPlanService, ...commandHandlers, ...queriesHandlers]
 })
 export class TrainingPlanModule {}

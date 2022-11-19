@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, Max, Min } from 'class-validator';
-import { Activity } from '~/modules/activity/entities/activity.entity';
+import { ActivityEntity } from '~/modules/activity/entities/activity.entity';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
 
 export class UpdateTrainingPlanDto {
@@ -8,7 +8,7 @@ export class UpdateTrainingPlanDto {
     description: 'plan`s uniq id',
     example: 45,
     required: false
-  })  
+  })
   id: number;
 
   @ApiProperty({
@@ -32,7 +32,7 @@ export class UpdateTrainingPlanDto {
   @IsOptional()
   duration?: number;
 
-  @ApiProperty({ description: 'user plan activities', type: [Activity], required: false })
+  @ApiProperty({ description: 'user plan activities', type: [ActivityEntity], required: false })
   @IsOptional()
-  activities?: Activity[];
+  activities?: ActivityEntity[];
 }

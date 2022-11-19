@@ -5,9 +5,9 @@ import { Exclude, instanceToPlain } from 'class-transformer';
 import { EGender, ELanguages, EUserStatus } from '../user.domain';
 import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from './comment.entity';
-import { Activity } from '~/modules/activity/entities/activity.entity';
+import { ActivityEntity } from '~/modules/activity/entities/activity.entity';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
-import { TrainingPlan } from '~/modules/training-plan/infrastructure/entities/training-plan.entity';
+import { TrainingPlanEntity } from '~/modules/training-plan/infrastructure/entities/training-plan.entity';
 
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
@@ -109,17 +109,17 @@ export class User extends BaseEntity {
   @JoinTable()
   comments?: Comment[];
 
-  @OneToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.user, { cascade: true })
+  @OneToMany(() => TrainingPlanEntity, (trainingPlan) => trainingPlan.user, { cascade: true })
   @JoinTable()
-  plans?: TrainingPlan[];
+  plans?: TrainingPlanEntity[];
 
   @Column({ default: ELanguages.EN, enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
   @ApiProperty({ description: 'user chosen language',  enum: ELanguages, type: 'enum', enumName: 'ELanguages' })
   language: ELanguages;
 
-  @ApiProperty({ description: 'user activities ', type: [Activity] })
-  @ManyToMany(() => Activity, (activity) => activity.user, { eager: true })
-  activities?: Activity[];
+  @ApiProperty({ description: 'user activities ', type: [ActivityEntity] })
+  @ManyToMany(() => ActivityEntity, (activity) => activity.user, { eager: true })
+  activities?: ActivityEntity[];
 
   toJSON() {
     return instanceToPlain(this);

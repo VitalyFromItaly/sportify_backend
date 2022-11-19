@@ -1,13 +1,25 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToOne, OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { instanceToPlain } from 'class-transformer';
 import { EGoal } from '~/modules/dictionary/dictionary.domain';
 import { Max, Min } from 'class-validator';
 import { User } from '~/modules/user/entities/user.entity';
-import { Activity } from '~/modules/activity/entities/activity.entity';
+import {
+  TrainingPlanActivityEntity
+} from '~/modules/training-plan/infrastructure/entities/training-plan-activity.entity';
 
 @Entity({ name: 'training_plan' })
-export class TrainingPlan extends BaseEntity {
+export class TrainingPlanEntity extends BaseEntity {
   @ApiProperty({
     description: 'plan`s uniq id',
     example: 45
@@ -41,9 +53,10 @@ export class TrainingPlan extends BaseEntity {
   @Column({ type: 'int', default: 6 })
   duration: number;
 
-  @ApiProperty({ description: 'user plan activities', type: [Activity] })
-  @ManyToMany(() => Activity, (activity) => activity.trainingPlan, { eager: true })
-  activities?: Activity[];
+  @ApiProperty({ description: 'user plan activities', type: [TrainingPlanActivityEntity] })
+  @OneToMany(() => TrainingPlanActivityEntity, (trainingPlanActivity) => trainingPlanActivity.trainingPlan)
+  @JoinTable()
+  activities: TrainingPlanActivityEntity[];
 
   @ApiProperty({
     description: 'date user was created',

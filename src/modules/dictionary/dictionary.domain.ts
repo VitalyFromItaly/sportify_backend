@@ -1,4 +1,4 @@
-import { Activity } from '../activity/entities/activity.entity';
+import { ActivityEntity } from '../activity/entities/activity.entity';
 
 export enum EGoal {
   WEIGHT_REDUCTION,
@@ -14,5 +14,5 @@ export type TLocaleSelectOption = { value: TInputTypeValue; text_en: string; tex
 export type TDictionary = {
   goals: TLocaleSelectOption[];
   activity_types: TLocaleSelectOption[];
-  activities: Activity[];
+  activities: ActivityEntity[];
 };
