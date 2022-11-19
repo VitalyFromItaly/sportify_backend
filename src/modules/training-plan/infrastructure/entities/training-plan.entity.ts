@@ -29,7 +29,7 @@ export class TrainingPlan extends BaseEntity {
   userId: number;
 
   @ManyToOne(() => User, (user) => user.plans)
-  @JoinColumn({ name: 'userId' })
+  @JoinColumn({ name: 'user_id' })
   @ApiProperty({ description: 'user id' })
   user: User;
 
