@@ -11,7 +11,7 @@ export class TrainingPlan extends BaseEntity {
   @ApiProperty({
     description: 'plan`s uniq id',
     example: 45
-  })  
+  })
   @PrimaryGeneratedColumn({ comment: 'plan uniq id' })
   id: number;
 
@@ -25,8 +25,11 @@ export class TrainingPlan extends BaseEntity {
   @Max(EGoal.COMPETITION_PREPARATION)
   goal: EGoal;
 
+  @Column()
+  userId: number;
+
   @ManyToOne(() => User, (user) => user.plans)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn({ name: 'userId' })
   @ApiProperty({ description: 'user id' })
   user: User;
 
@@ -41,7 +44,7 @@ export class TrainingPlan extends BaseEntity {
   @ApiProperty({ description: 'user plan activities', type: [Activity] })
   @ManyToMany(() => Activity, (activity) => activity.trainingPlan, { eager: true })
   activities?: Activity[];
-  
+
   @ApiProperty({
     description: 'date user was created',
     example: '2022-07-31 22:13:20.794424'

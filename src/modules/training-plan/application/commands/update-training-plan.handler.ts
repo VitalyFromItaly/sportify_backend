@@ -22,6 +22,8 @@ export class UpdateTrainingPlanHandler implements ICommandHandler<UpdateTraining
       throw new NotFoundException('Training plan not found');
     }
 
+    console.log(trainingPlan, command.updatePlanPayload);
+
     Object.assign(trainingPlan, command.updatePlanPayload);
     await trainingPlan.save();
 
