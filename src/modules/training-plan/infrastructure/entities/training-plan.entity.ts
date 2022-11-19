@@ -25,7 +25,7 @@ export class TrainingPlan extends BaseEntity {
   @Max(EGoal.COMPETITION_PREPARATION)
   goal: EGoal;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: number;
 
   @ManyToOne(() => User, (user) => user.plans)
